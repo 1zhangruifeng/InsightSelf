@@ -309,21 +309,6 @@ $env:GRADLE_USER_HOME = "C:\gradle-home"
 - [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md)：项目实现背景
 - [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)：第三方声明
 
-## 上传 GitHub 前
-
-仓库已配置为忽略本地数据库、IDE 设置、构建产物、API 环境文件和 Android SDK 本地路径。上传前仍应检查暂存文件，确认其中没有密钥或个人数据：
-
-```powershell
-git status
-git diff --cached
-```
-
-推荐的 GitHub topics：
-
-```text
-android  kotlin  jetpack-compose  spring-boot  sqlite  self-reflection  wellness
-```
-
 ## 许可证
 
 本项目使用 **AGPL-3.0-or-later** 许可证。重新分发或部署前，请阅读 [`LICENSE`](LICENSE) 和 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。

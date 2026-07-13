@@ -308,21 +308,6 @@ This is expected when no Qwen key is configured. The local template is an intent
 - [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md) - implementation background
 - [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) - third-party notices
 
-## Before Publishing This Repository
-
-The repository is configured to ignore local databases, IDE settings, build output, API environment files, and Android SDK paths. Before pushing, still review the staged files and confirm that no secrets or personal data are included:
-
-```powershell
-git status
-git diff --cached
-```
-
-Recommended repository topics:
-
-```text
-android  kotlin  jetpack-compose  spring-boot  sqlite  self-reflection  wellness
-```
-
 ## License
 
 This project is licensed under **AGPL-3.0-or-later**. See [`LICENSE`](LICENSE) and [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) before redistribution or deployment.
