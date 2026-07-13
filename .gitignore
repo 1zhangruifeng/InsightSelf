@@ -1,0 +1,48 @@
+# Local machine caches and optional convenience tools
+.cache/
+.tools/
+
+# IDE / editor local state
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+out/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local environment files
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Maven / Java build output
+**/.m2/
+backend/target/
+backend/dy
+backend/ephe/
+
+# Android / Gradle build output
+.gradle/
+**/.gradle/
+**/build/
+local.properties
+android/local.properties
+
+# Node dependencies for UI mockups
+insightself_mockups/node_modules/
+
+# Runtime logs and generated local screenshots
+*.log
+.cache/*.png
+
+# Local SQLite runtime databases
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal

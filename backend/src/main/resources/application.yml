@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: insightself-backend
+  datasource:
+    url: ${SQLITE_URL:jdbc:sqlite:./insightself.sqlite}
+    driver-class-name: org.sqlite.JDBC
+    username:
+    password:
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration/sqlite
+
+server:
+  port: 8080
+
+# ==================== 通义千问 AI 配置 ====================
+qwen:
+  api-key: ${QWEN_API_KEY:}
+  base-url: ${QWEN_BASE_URL:https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions}
+  model: ${QWEN_MODEL:qwen-plus}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/insightself?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: none
+  flyway:
+    locations: classpath:db/migration/mysql

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 测评作答（二级页）</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --stroke: rgba(20, 22, 33, 0.08);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, "PingFang SC", sans-serif;
+        background: linear-gradient(160deg, var(--bg0), var(--bg1));
+        color: var(--text);
+      }
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      .safe {
+        flex: 1;
+        min-height: 0;
+        padding: 18px 18px 18px;
+        display: flex;
+        flex-direction: column;
+      }
+      .status {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+      .appbar {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 8px 6px;
+      }
+      .back {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.75);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+      }
+      .icon {
+        width: 18px;
+        height: 18px;
+        opacity: 0.75;
+      }
+      .titlewrap {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+        min-width: 0;
+      }
+      .title {
+        font-weight: 800;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .sub {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .progress {
+        margin: 10px 8px 0;
+        height: 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(18, 19, 26, 0.05);
+        overflow: hidden;
+      }
+      .progress > i {
+        display: block;
+        height: 100%;
+        width: 22%;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      .card {
+        margin-top: 14px;
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+      }
+      .qno {
+        font-size: 11px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.55);
+      }
+      h1 {
+        margin: 8px 0 10px;
+        font-size: 16px;
+        letter-spacing: -0.02em;
+      }
+      .scale {
+        margin-top: 10px;
+        display: grid;
+        gap: 10px;
+      }
+      .opt {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 12px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.78);
+        font-size: 13px;
+        font-weight: 700;
+        color: rgba(18, 19, 26, 0.78);
+      }
+      .radio {
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        border: 2px solid rgba(18, 19, 26, 0.18);
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+      .radio.on {
+        border-color: rgba(91, 103, 255, 0.55);
+      }
+      .radio.on::after {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      .hint {
+        margin-top: 10px;
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.45);
+        line-height: 1.45;
+      }
+      .footer {
+        margin-top: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding-top: 14px;
+      }
+      .btn {
+        height: 48px;
+        border-radius: 16px;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .btn-ghost {
+        border: 1px solid rgba(18, 19, 26, 0.14);
+        background: rgba(255, 255, 255, 0.85);
+        color: rgba(18, 19, 26, 0.78);
+      }
+      .btn-primary {
+        border: 0;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #fff;
+        box-shadow: 0 14px 34px rgba(91, 103, 255, 0.26);
+      }
+      .dlg-layer {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 12, 20, 0.38);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .phone.d-open .dlg-layer {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .dlg {
+        width: 100%;
+        max-width: 300px;
+        background: #fff;
+        border-radius: 20px;
+        padding: 18px 16px 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        box-shadow: 0 16px 50px rgba(18, 19, 26, 0.12);
+      }
+      .dlg h3 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+      .dlg p {
+        margin: 0 0 16px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .dlg-act {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .dlg-act button {
+        height: 42px;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .b-g {
+        border: 1px solid rgba(18, 19, 26, 0.14);
+        background: #fff;
+      }
+      .b-r {
+        border: 0;
+        background: rgba(230, 90, 90, 0.12);
+        color: #c03535;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone" id="phone" aria-label="测评二级作答页原型（单屏示意：进度条 + 李克特选项 + 返回确认）">
+      <div class="safe">
+        <div class="status"><span>9:41</span><span>5G · 100%</span></div>
+
+        <div class="appbar">
+          <button type="button" class="back" id="btnBack" aria-label="返回">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="titlewrap">
+            <div class="title">大五人格简版（BFI-10）</div>
+            <div class="sub">第 3 / 10 题 · 约 3 分钟</div>
+          </div>
+          <div class="back" aria-hidden="true" title="更多">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+              <path d="M12 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+              <path d="M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="progress" aria-hidden="true"><i></i></div>
+
+        <div class="card">
+          <div class="qno">题目 3</div>
+          <h1>我通常会在开始前先把事情规划好。</h1>
+          <div class="scale" aria-hidden="true">
+            <div class="opt"><span class="radio"></span>非常不同意</div>
+            <div class="opt"><span class="radio"></span>不同意</div>
+            <div class="opt"><span class="radio on"></span>一般</div>
+            <div class="opt"><span class="radio"></span>同意</div>
+            <div class="opt"><span class="radio"></span>非常同意</div>
+          </div>
+          <p class="hint">
+            交互要求：用户中途返回（系统返回键/左上角）弹出确认：<b>保存进度</b> / <b>放弃本次作答</b>（PRD § 信息测评模块）。
+          </p>
+        </div>
+
+        <div class="footer" aria-hidden="true">
+          <button type="button" class="btn btn-ghost">上一题</button>
+          <button type="button" class="btn btn-primary">下一题</button>
+        </div>
+      </div>
+
+      <div class="dlg-layer" id="dlgLayer" aria-hidden="true">
+        <div class="dlg" role="alertdialog" aria-labelledby="dlgTitle">
+          <h3 id="dlgTitle">退出作答？</h3>
+          <p>你已完成 2 / 10 题。是否保存进度以便下次继续？</p>
+          <div class="dlg-act">
+            <button type="button" class="b-g" id="dlgSave">保存进度</button>
+            <button type="button" class="b-r" id="dlgDrop">放弃</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var phone = document.getElementById("phone");
+        var btnBack = document.getElementById("btnBack");
+        var dlgSave = document.getElementById("dlgSave");
+        var dlgDrop = document.getElementById("dlgDrop");
+
+        btnBack.addEventListener("click", function () {
+          phone.classList.add("d-open");
+        });
+        dlgSave.addEventListener("click", function () {
+          phone.classList.remove("d-open");
+        });
+        dlgDrop.addEventListener("click", function () {
+          phone.classList.remove("d-open");
+        });
+      })();
+    </script>
+  </body>
+</html>

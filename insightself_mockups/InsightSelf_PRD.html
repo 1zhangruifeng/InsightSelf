@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InsightSelf — 产品需求文档（PRD）</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1a1d26;
+      --muted: #5c6370;
+      --accent: #3d5a80;
+      --border: #e2e6ef;
+      --code-bg: #eef1f8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+    }
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+    header.doc-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin: 2.25rem 0 0.75rem;
+      color: var(--accent);
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+    h2:first-of-type { border-top: none; padding-top: 0; }
+    h3 {
+      font-size: 1.05rem;
+      margin: 1.35rem 0 0.5rem;
+      color: var(--text);
+    }
+    h4 {
+      font-size: 0.95rem;
+      margin: 1rem 0 0.35rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    p { margin: 0.5rem 0; }
+    ul, ol { margin: 0.5rem 0 0.5rem 1.25rem; padding: 0; }
+    li { margin: 0.35rem 0; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      margin: 0.85rem 0;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      background: var(--code-bg);
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 0.35rem;
+    }
+    code, .kbd {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.88em;
+      background: var(--code-bg);
+      padding: 0.12em 0.35em;
+      border-radius: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin: 0.75rem 0;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--code-bg); font-weight: 600; }
+    .note {
+      font-size: 0.88rem;
+      color: var(--muted);
+      border-left: 3px solid var(--accent);
+      padding-left: 0.75rem;
+      margin: 0.75rem 0;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="doc-header">
+      <h1>InsightSelf — 产品需求文档（PRD）</h1>
+      <p class="meta">基于《InsightSelf 简单PRD》整理，并补充交互与状态细节。开发以 Android Studio 为主，真机预览以 Android 机型为基准。对应高保真 HTML 原型入口：<a href="insightself_mockups/index.html">insightself_mockups/index.html</a>。</p>
+    </header>
+
+    <main>
+      <h2>0. 环境与全局要求</h2>
+      <div class="card">
+        <p><span class="tag">平台</span> Android 原生（Android Studio）；布局与触控热区按 Material 与常见全面屏手势习惯设计。</p>
+        <p><span class="tag">语言</span> 支持简体中文（CH）与英文（EN）切换；切换后当前页面文案即时刷新，已填写的表单内容（除依赖语言的说明性标签外）保持不变；运势/解读等生成类内容按新语言重新拉取或本地重算（若实现为本地规则则切换语言后需重新应用对应文案包）。</p>
+        <p class="note">建议：语言与「偏中式 / 偏西式 / 平衡」偏好可联动默认展示权重（主页卡片排序、AI 话术倾向），但最终以用户在个人中心的选择为准。</p>
+      </div>
+
+      <h3>0.1 全局导航与手势</h3>
+      <ul>
+        <li>底部 Tab 共 5 项，顺序固定：① 更懂自己（主页）② 生辰八字 ③ 星座 ④ 信息测评 ⑤ 个人中心。</li>
+        <li>单击 Tab：切换根页面；当前 Tab 高亮；再点当前 Tab：可选实现「滚动到顶部」行为（建议主页与长列表页支持）。</li>
+        <li>系统返回键：在二级页（问卷、AI 弹层等）关闭当前层；在根 Tab 页可双击退出 App 或弹出「再按一次退出」（按课程/组内规范二选一）。</li>
+      </ul>
+
+      <h2>1. 登录 / 注册页</h2>
+
+      <h3>1.1 布局与字段</h3>
+      <ul>
+        <li>账号输入框：单行文本；占位符提示格式规则（字母数字，最长 12）。</li>
+        <li>密码输入框：支持显示/隐藏切换（眼睛图标）；切换时焦点不丢失。</li>
+        <li>主按钮：<code>登录</code>；次引导文案在按钮下方：<code>没有账号？去注册</code>（可点击整行）。</li>
+      </ul>
+
+      <h3>1.2 交互细节 — 已有账号登录</h3>
+      <table>
+        <thead>
+          <tr><th>动作</th><th>系统响应</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>点击登录</td>
+            <td>先做前端校验（非空）；通过后按钮进入加载态（禁用重复提交、显示进度）；请求服务端比对账号密码。</td>
+          </tr>
+          <tr>
+            <td>登录成功</td>
+            <td>Toast 或 Snackbar：<code>登录成功</code>（约 1.5–2s）；随后跳转主页 Tab①；清除登录页返回栈（避免返回又回到登录）。</td>
+          </tr>
+          <tr>
+            <td>登录失败</td>
+            <td>按钮恢复可点；错误提示明确区分「账号不存在」「密码错误」「网络异常」；停留在本页，保留已输入账号，密码可按组内安全策略决定是否清空。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>1.3 交互细节 — 注册</h3>
+      <ul>
+        <li>从登录页进入注册子页或同页切换模式；需有「返回登录」入口。</li>
+        <li>账号：实时或失焦校验 — 仅允许字母数字、长度 ≤12；提交时发起唯一性校验，重复则标红字段并提示「该账号已被注册」。</li>
+        <li>密码：允许大小写、数字、特殊字符；长度 ≤16；可选弱密码提示（过短、纯数字等）。</li>
+        <li>注册成功：跳转「个人信息登记」流程；首次必须完成必填项才可进入主页（或进入「占位主页」但核心功能锁定，建议直接引导填完）。</li>
+      </ul>
+
+      <h3>1.4 个人信息登记页</h3>
+      <table>
+        <thead>
+          <tr><th>字段</th><th>交互</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>用户昵称</td>
+            <td>必填；中文、字母、数字；最多 12 字符；输入法与计数同步显示剩余字数。</td>
+          </tr>
+          <tr>
+            <td>性别</td>
+            <td>单选（男 / 女）；选中态明显。</td>
+          </tr>
+          <tr>
+            <td>出生年月日</td>
+            <td>日期选择器（滚轮或日历）；选完后<strong>星座只读展示</strong>，自动根据日期计算并锁定编辑（与个人中心逻辑一致）。</td>
+          </tr>
+          <tr>
+            <td>出生时辰</td>
+            <td>选填；时辰选择器（可提供「不详」选项以免影响八字完整性提示）。</td>
+          </tr>
+          <tr>
+            <td>出生地</td>
+            <td>省 → 市 → 区三级联动；区域范围含中国大陆 + 香港 + 澳门。</td>
+          </tr>
+          <tr>
+            <td>偏好</td>
+            <td>中式 / 西式 / 平衡；语言 CH / EN；保存后立即应用全局文案。</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">底部主按钮：<code>完成并进入</code>；未填必填项点击时逐项锚定到第一个错误字段并抖动或滚动聚焦。</p>
+
+      <h2>2. App 主页 — 「更懂自己」综合解读</h2>
+
+      <h3>2.1 顶部问候区</h3>
+      <ul>
+        <li>文案：<code>{昵称}，早上好 / 下午好 / 晚上好</code>，规则建议：5:00–11:59 早上；12:00–17:59 下午；其余晚上。</li>
+        <li>若昵称为空（异常数据）：降级为「用户」或账号掩码。</li>
+      </ul>
+
+      <h3>2.2 数据聚合卡片（纵向列表）</h3>
+      <h4>卡片一：今日运势</h4>
+      <ul>
+        <li>展示：综合分数、幸运颜色、幸运方位、幸运数字、建议做 / 不建议做（可与万年历数据源对齐）。</li>
+        <li>交互：卡片默认可折叠摘要行 + 展开全文；首次进入当日可默认展开第一项。</li>
+        <li>下拉刷新（SwipeRefresh）：重新请求当日运势；加载时骨架屏或顶部进度条。</li>
+      </ul>
+      <h4>卡片二：星象解读</h4>
+      <ul>
+        <li>太阳 / 月亮 / 上升分段展示；过长正文「展开更多」。</li>
+        <li>横滑分段 Tab（可选）：在三块内容间切换以减少纵向滚动。</li>
+      </ul>
+      <h4>卡片三：最新心理测评结论</h4>
+      <ul>
+        <li>展示最近一次已完成测评的摘要标题 + 一行结论；右侧箭头进入测评模块对应报告详情页。</li>
+        <li>若无完成记录：空状态插画 + <code>去测评</code> 跳转 Tab④。</li>
+      </ul>
+
+      <h3>2.3 AI 综合解读助手（侧边入口 + 底部弹层）</h3>
+      <ul>
+        <li>常驻浮动入口（右侧中下）：文案示例 <code>点我试试 AI 综合解读</code>；弱呼吸动效或红点仅用于首次引导（可配置只出现一次）。</li>
+        <li>点击入口：自底部上拉 <strong>半屏至 90% 高度</strong> 对话框；背景蒙层 40% 黑色，点击蒙层 = 触发关闭确认（与关闭按钮一致）。</li>
+        <li>对话区：左侧 AI 头像；首条消息或等待态显示 <code>正在解析中……</code>（加载动画）；用户侧输入框固定在弹层底部，发送后滚到底部。</li>
+        <li>仅由此入口打开时进入对话上下文；主页其他区域点击不触发 AI。</li>
+        <li>关闭：右上角 <code>×</code> 或下滑 dismiss（若实现 BottomSheet）；弹出二次确认：<code>是否退出当前对话？</code> — 选项 <code>继续对话</code> / <code>退出</code>；退出则销毁当前会话 UI（是否保留服务端会话由实现决定，原型级可只做前端清空）。</li>
+      </ul>
+
+      <h2>3. 生辰八字模块（Tab②）</h2>
+      <ul>
+        <li><strong>顶部一句评价：</strong>大字标题 + 副文案；支持下拉刷新同步后端重新生成（若有）。</li>
+        <li><strong>五行雷达图：</strong>轻触数据点显示精确百分比 Tooltip；双指缩放可选（低配机可禁用）；图例颜色与五行一致。</li>
+        <li><strong>相生相克：</strong>图示或小图标链；点击某一五行弹出简短说明浮层。</li>
+        <li><strong>解读区：</strong>喜用神、幸运颜色 / 方位 / 数字分段标题清晰；支持与主页卡片跳转互相引用（ deeplink 可选）。</li>
+        <li><strong>建议卡片：</strong>行业建议、伴侣契合、大运、流年 —— 每项默认可折叠；流年可按年份 Segmented 切换。</li>
+        <li><strong>十神柱形图：</strong>点击柱子高亮并在下方展示该十神解释段落。</li>
+        <li>若缺少时辰：在顶部横幅提示「未填写时辰，排盘仅供参考」，并提供跳转个人中心的链接。</li>
+      </ul>
+
+      <h2>4. 星座解读模块（Tab③）</h2>
+      <ul>
+        <li><strong>顶部个性化一句：</strong>格式如 <code>日狮子 + 月水瓶 + 升双鱼</code> 主标题 + 标签式副标题；分享按钮（可选）复制纯文本。</li>
+        <li><strong>动态看板：</strong>情绪 / 交流 / 行动力三维度得分或星级；标注「基于当日相位」；切换日期查看历史（日历图标）。</li>
+        <li><strong>核心解读：</strong>与主页星象卡片一致但信息更全；二级匹配模型输出分层建议 —— 采用折叠面板：<code>沟通策略</code> <code>风险提示</code> <code>合作方式</code>。</li>
+        <li>下拉刷新更新当日动态数据；失败时使用上次缓存并 Toast「网络异常，显示缓存内容」。</li>
+      </ul>
+
+      <h2>5. 信息测评模块（Tab④）</h2>
+      <ul>
+        <li>列表四项问卷：每项包含标题、一行简介、 estimated 时长、上次完成时间（若有）、状态标签（未开始 / 进行中 / 已完成）。</li>
+        <li>点击进入二级页：顶部进度条（题号 x / N）；题型支持单选、李克特量表；中途返回弹出确认：<code>进度将保存</code> 或 <code>放弃本次作答</code>（按实现选择）。</li>
+        <li>提交成功：结果解读页（滚动长文 + 分享）；返回列表该项标记已完成并更新时间戳。</li>
+        <li>主页「最新测评结论」与此列表第一条已完成测评同步。</li>
+      </ul>
+      <p class="note">问卷名称保留中英文全称缩写（BFI-10、ECR-R、Career Anchors、MBTI 模拟量表）以符合学术/产品说明习惯。</p>
+
+      <h2>6. 个人中心（Tab⑤）</h2>
+      <ul>
+        <li>信息只读展示 + 右上角或行内 <code>编辑</code>；编辑态下表单项与注册后资料页一致。</li>
+        <li>修改密码：需原密码 + 新密码 + 确认新密码；强度规则与注册一致。</li>
+        <li>语言与风格偏好修改后全局立即刷新；若当前在 AI 弹层中，关闭后下次打开应用新偏好。</li>
+        <li><code>登出</code>：二次确认「确定退出登录？」；确认后清空本地 Token，回到登录页。</li>
+      </ul>
+
+      <h2>7. 通用状态与非功能要求（建议写入验收）</h2>
+      <table>
+        <thead>
+          <tr><th>类型</th><th>要求</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>加载</td>
+            <td>列表与卡片请求超过 300ms 显示加载；关键路径不可无反馈连点。</td>
+          </tr>
+          <tr>
+            <td>空状态</td>
+            <td>每个列表需有空状态插画与主行动按钮。</td>
+          </tr>
+          <tr>
+            <td>错误</td>
+            <td>网络错误可重试；业务错误文案口语化且可操作。</td>
+          </tr>
+          <tr>
+            <td>无障碍</td>
+            <td>主要按钮与 Tab 补充 contentDescription；图表关键数据提供文本摘要。</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <footer>
+      <p>文档版本：扩展 PRD（HTML） · 源文件：<code>InsightSelf 简单PRD.md</code> · 原型：<a href="insightself_mockups/index.html">insightself_mockups/index.html</a></p>
+    </footer>
+  </div>
+</body>
+</html>

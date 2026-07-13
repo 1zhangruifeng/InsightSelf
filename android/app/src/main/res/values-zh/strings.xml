@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- ========== 通用 ========== -->
+    <string name="app_name">洞见自我</string>
+    <string name="continue_btn">继续</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="loading">加载中...</string>
+    <string name="refresh">刷新</string>
+    <string name="logout">退出登录</string>
+    <string name="language">语言</string>
+    <string name="chinese">简体中文</string>
+    <string name="english">English</string>
+    <string name="other_settings">其他设置</string>
+    <string name="version">版本</string>
+
+    <!-- ========== 个人资料创建页面 ========== -->
+    <string name="create_your_profile">创建个人档案</string>
+    <string name="profile_subtitle">八字 · 星座 · 测评 统一档案</string>
+    <string name="nickname">昵称</string>
+    <string name="nickname_placeholder">例如：Harper</string>
+    <string name="birth_date">出生日期</string>
+    <string name="birth_date_placeholder">年-月-日</string>
+    <string name="birth_time">出生时间</string>
+    <string name="birth_time_placeholder">时:分</string>
+    <string name="birthplace">出生地</string>
+    <string name="birthplace_placeholder">城市 / 国家</string>
+    <string name="gender">性别</string>
+    <string name="gender_prefer_not">不愿透露</string>
+    <string name="gender_female">女</string>
+    <string name="gender_male">男</string>
+    <string name="calendar_type">历法类型</string>
+    <string name="calendar_solar">阳历</string>
+    <string name="calendar_lunar">阴历</string>
+    <string name="preference_lens">文化偏好</string>
+    <string name="preference_eastern">偏中式</string>
+    <string name="preference_western">偏西式</string>
+    <string name="preference_balanced">平衡</string>
+    <string name="ai_enabled">启用 AI 综合解读</string>
+    <string name="ai_description">根据您的数据生成整合洞察</string>
+    <string name="ai_info">您可随时在设置中刷新或关闭 AI。</string>
+
+    <!-- ========== 底部导航 ========== -->
+    <string name="nav_home">主页</string>
+    <string name="nav_bazi">八字</string>
+    <string name="nav_zodiac">星座</string>
+    <string name="nav_tests">测评</string>
+    <string name="nav_profile">我的</string>
+
+    <!-- ========== 主页 ========== -->
+    <string name="home_greeting">你好，%s</string>
+    <string name="integrated_insight">您的综合洞察</string>
+    <string name="profile_overview">个人档案概览</string>
+    <string name="today_astrology">今日星象</string>
+    <string name="bazi_highlights">八字亮点</string>
+    <string name="latest_assessments">最新测评</string>
+    <string name="assessment_not_taken">暂未进行测评</string>
+    <string name="view_details">查看详情</string>
+    <string name="take_assessment">去测评</string>
+    <string name="integrated_insight_title">综合洞察</string>
+    <string name="ai_report_title">AI / 模板报告</string>
+    <string name="open_report">打开报告</string>
+    <string name="not_set">未设置</string>
+
+    <!-- ========== 八字页面 ========== -->
+    <string name="bazi_title">八字</string>
+    <string name="four_pillars">四柱</string>
+    <string name="five_element_balance">五行平衡</string>
+    <string name="conclusion">结论</string>
+    <string name="evidence">依据</string>
+    <string name="suggestion">建议</string>
+    <string name="demo_note">演示说明</string>
+    <string name="regenerate_bazi">重新生成八字洞察</string>
+    <string name="year">年柱</string>
+    <string name="month">月柱</string>
+    <string name="day">日柱</string>
+    <string name="hour">时柱</string>
+    <string name="strongest">最强</string>
+    <string name="gentle_support">辅助</string>
+    <string name="pending">待生成</string>
+
+    <!-- ========== 星座页面 ========== -->
+    <string name="zodiac_title">星座</string>
+    <string name="daily_board">每日运势</string>
+    <string name="emotion">情绪</string>
+    <string name="communication">沟通</string>
+    <string name="action">行动力</string>
+    <string name="today_suggestion">今日建议</string>
+    <string name="relationship_matching">关系匹配</string>
+    <string name="open_match">打开关系匹配</string>
+    <string name="refresh_daily">刷新每日运势</string>
+    <string name="match_title">关系匹配</string>
+    <string name="match_subtitle">柔和兼容性反思</string>
+    <string name="target_profile">目标档案</string>
+    <string name="calculate_match">计算匹配度</string>
+    <string name="match_result">匹配结果</string>
+    <string name="communication_tips">沟通建议</string>
+    <string name="watch_outs">注意事项</string>
+    <string name="personality_tag">个性标签</string>
+    <string name="optional_tag">选填，例如 INFP</string>
+    <string name="zodiac_score">星座分数</string>
+    <string name="personality_score">个性分数</string>
+    <string name="final_score">综合分数</string>
+    <string name="target_nickname">对方昵称</string>
+    <string name="target_zodiac">对方星座</string>
+    <string name="collaboration_mode">协作模式</string>
+
+    <!-- ========== 测评页面 ========== -->
+    <string name="assessments_title">心理测评</string>
+    <string name="assessments_subtitle">轻量反思工具</string>
+    <string name="latest_results">最新结果</string>
+    <string name="no_results">暂无测评结果。</string>
+    <string name="start">开始</string>
+    <string name="view">查看</string>
+    <string name="response_scale">评分量表</string>
+    <string name="scale_description">选择最符合当下的感受。</string>
+    <string name="submit_assessment">提交测评</string>
+    <string name="back_to_assessments">返回测评列表</string>
+    <string name="back_to_home">返回首页</string>
+    <string name="question">题目</string>
+    <string name="answered">已答</string>
+    <string name="scale_hint">1 = 非常不像我，5 = 非常像我</string>
+    <string name="result_summary">结果摘要</string>
+    <string name="saved_result">已保存结果</string>
+    <string name="scores">分数详情</string>
+
+    <!-- ========== AI报告页面 ========== -->
+    <string name="report_title">AI / 模板报告</string>
+    <string name="report_subtitle">综合自我反思</string>
+    <string name="report_source">报告来源</string>
+    <string name="generated_by">生成者</string>
+    <string name="safety_note">安全说明</string>
+    <string name="refresh_latest">刷新最新报告</string>
+    <string name="generate_report">生成 / 刷新报告</string>
+    <string name="template_fallback">演示稳定性模板报告</string>
+    <string name="ai_synthesis">AI 综合生成</string>
+    <string name="safety_message">此内容仅供自我反思和比赛演示使用，不构成医疗、法律、财务、心理诊断或占卜建议。</string>
+
+    <!-- ========== 认证页面 ========== -->
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="username">账号</string>
+    <string name="password">密码</string>
+    <string name="no_account">还没有账号？立即注册</string>
+    <string name="have_account">已有账号？返回登录</string>
+    <string name="register_and_fill">注册并填写档案</string>
+    <string name="demo_note_text">模拟器测试时，请在 localhost:8080 启动后端服务。</string>
+    <string name="existing_demo_account">现有演示账号</string>
+    <string name="letters_and_numbers">字母和数字</string>
+    <string name="create_account">创建账号</string>
+    <string name="checking_session">正在检查会话状态...</string>
+
+    <!-- ========== 错误/提示消息 ========== -->
+    <string name="error_nickname_required">昵称是必填项。</string>
+    <string name="error_birth_date_format">出生日期格式必须为 年-月-日</string>
+    <string name="error_birth_time_format">出生时间格式必须为 时:分:秒</string>
+    <string name="error_birthplace_required">出生地是必填项。</string>
+    <string name="error_session_expired">会话已过期，请重新登录。</string>
+    <string name="error_profile_save_failed">档案保存失败。</string>
+    <string name="error_server">服务器错误，请检查档案字段。</string>
+    <string name="error_backend_unreachable">无法连接后端，请启动服务器后重试。</string>
+    <string name="loading_assessments">加载测评列表中...</string>
+    <string name="loading_questions">加载题目中...</string>
+    <string name="loading_bazi">加载八字中...</string>
+    <string name="loading_zodiac">加载星座中...</string>
+    <string name="loading_report">加载报告中...</string>
+    <string name="generating">生成中...</string>
+    <string name="calculating">计算中...</string>
+    <string name="calculating_match">计算匹配度中...</string>
+    <string name="no_bazi_generated">尚未生成八字洞察。准备好后可从您的统一档案创建。</string>
+    <string name="no_report_generated">尚未生成综合报告。后端可为演示稳定性创建模板报告。</string>
+    <string name="profile_unavailable">档案详情暂时不可用。创建档案可个性化此空间。</string>
+    <string name="zodiac_unavailable">今日运势将在您的档案生成后显示。</string>
+    <string name="bazi_unavailable">八字亮点将在后端读取档案后显示于此。</string>
+    <string name="generate_bazi">生成八字洞察</string>
+    <string name="generate_report_btn">生成报告</string>
+
+    <!-- ========== 占位符文本 ========== -->
+    <string name="placeholder_pending">待生成</string>
+    <string name="placeholder_unknown">未知</string>
+    <string name="placeholder_empty">暂无内容</string>
+    <string name="placeholder_recent">最近</string>
+    <string name="placeholder_today">今日</string>
+    <string name="placeholder_default_suggestion">选择一个小的行动，对自己保持温和的节奏。</string>
+    <string name="placeholder_match_tips">保持好奇和具体的沟通方式。</string>
+    <string name="placeholder_report_ready">您的最新报告已就绪。</string>
+
+    <string name="simplified">简化版</string>
+    <string name="explainable">可解释</string>
+    <string name="important">重要</string>
+    <string name="generated_at">生成于 %s</string>
+    <string name="demo_disclaimer_bazi">这是一个简化的教育性自我反思结果，非专业八字引擎。</string>
+    <string name="placeholder_section">当后端包含此内容时，此部分将显示。</string>
+    <!-- 星座页面 -->
+    <string name="daily_board_with_date">每日运势 - %s</string>
+    <string name="daily">每日</string>
+    <string name="gentle">温和</string>
+    <string name="optional">可选</string>
+    <string name="zodiac_disclaimer">基于您保存的档案的轻量每日反思。用作提示，而非预测。</string>
+    <string name="match_description">比较目标出生日期和可选个性标签，进行柔和沟通反思。</string>
+    <string name="nickname_placeholder_short">例如：Quinn</string>
+    <string name="waiting">等待中</string>
+    <string name="match_instruction">输入昵称和出生日期，查看以沟通为重点的匹配结果。</string>
+    <string name="something_wrong">需要注意</string>
+    <string name="reflection">反思</string>
+    <string name="target">对方</string>
+    <string name="sign_label">星座：%s</string>
+    <string name="balanced_communication">平衡沟通</string>
+    <string name="retry">重试</string>
+    <string name="log_in_again">重新登录</string>
+    <!-- ========== 测评页面 ========== -->
+    <string name="assessment_disclaimer">此结果仅供轻量反思和比赛演示使用。</string>
+    <string name="start_assessment">开始 %s</string>
+    <string name="answered_count">已答 %1$d / %2$d 题</string>
+    <string name="before_submitting">提交前</string>
+    <string name="check">检查</string>
+    <string name="question_title">第 %d 题</string>
+    <string name="result_title">%s 结果</string>
+    <string name="back_to_assessments_short">返回测评列表</string>
+    <string name="result_not_found">当前会话未加载此结果。请返回测评列表并重新打开。</string>
+    <string name="result_summary_placeholder">您的结果已保存。将其作为反思的轻量提示。</string>
+    <string name="no_scores">此结果未返回分数详情。</string>
+    <string name="saved">已保存</string>
+    <string name="created">创建时间</string>
+    <string name="result_label_default">结果</string>
+    <string name="result_hero_description">来自您统一档案的已保存反思结果。</string>
+    <string name="assessment">测评</string>
+    <string name="details">详情</string>
+    <!-- ========== AI报告页面 ========== -->
+    <string name="unknown">未知</string>
+    <string name="integrated_report">综合报告</string>
+    <string name="report">报告</string>
+    <string name="demo">演示</string>
+    <string name="report_empty_placeholder">报告文本为空。请尝试重新生成。</string>
+    <string name="template_fallback_message">由模板生成，确保演示稳定性。</string>
+    <string name="ai_synthesis_message">由 AI 综合生成。</string>
+    <string name="backend_service_message">由后端报告服务生成。</string>
+    <!-- ========== 认证页面补充 ========== -->
+    <string name="register_subtitle">先注册，再填写统一档案</string>
+    <string name="new_demo_account">新建演示账号</string>
+    <string name="zodiac">星座</string>
+    <string name="edit">编辑</string>
+    <string name="updating_language">正在更新语言...</string>
+    <string name="wood">木</string>
+    <string name="fire">火</string>
+    <string name="earth">土</string>
+    <string name="metal">金</string>
+    <string name="water">水</string>
+</resources>

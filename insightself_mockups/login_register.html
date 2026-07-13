@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 登录 / 注册</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --stroke: rgba(20, 22, 33, 0.08);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, "PingFang SC", sans-serif;
+        background: linear-gradient(160deg, var(--bg0), var(--bg1));
+        color: var(--text);
+        min-height: 100%;
+      }
+      .phone {
+        width: 390px;
+        margin: 24px auto 48px;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .safe {
+        padding: 22px 18px 28px;
+      }
+      .logo {
+        text-align: center;
+        margin-bottom: 18px;
+      }
+      .logo h1 {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: -0.03em;
+      }
+      .logo p {
+        margin: 6px 0 0;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .card {
+        border: 1px solid var(--stroke);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(14px);
+        padding: 16px;
+        margin-bottom: 14px;
+      }
+      .card h2 {
+        margin: 0 0 12px;
+        font-size: 15px;
+      }
+      .label {
+        font-size: 11px;
+        color: var(--muted);
+        margin: 12px 0 6px;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .hint {
+        font-size: 10px;
+        color: rgba(91, 103, 255, 0.95);
+        font-weight: 700;
+      }
+      .field {
+        height: 46px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+        background: rgba(255, 255, 255, 0.92);
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 14px;
+      }
+      .field span.placeholder {
+        color: rgba(18, 19, 26, 0.38);
+      }
+      .eye {
+        padding: 6px;
+        border-radius: 10px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        display: grid;
+        place-items: center;
+      }
+      .eye svg {
+        width: 18px;
+        height: 18px;
+        opacity: 0.65;
+      }
+      .btn {
+        margin-top: 16px;
+        width: 100%;
+        height: 50px;
+        border: 0;
+        border-radius: 16px;
+        font-weight: 800;
+        font-size: 15px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        box-shadow: 0 14px 34px rgba(91, 103, 255, 0.28);
+      }
+      .btn.loading {
+        opacity: 0.65;
+        pointer-events: none;
+      }
+      .link {
+        text-align: center;
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .link a {
+        color: #2f3bff;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .toast {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        font-size: 11px;
+        border: 1px solid rgba(230, 90, 90, 0.25);
+        background: rgba(230, 90, 90, 0.08);
+        color: #a02828;
+      }
+      .toast.ok {
+        border-color: rgba(31, 191, 115, 0.35);
+        background: rgba(31, 191, 115, 0.1);
+        color: #14663d;
+      }
+      details.prd {
+        margin-top: 10px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      details.prd summary {
+        cursor: pointer;
+        font-weight: 700;
+        color: rgba(18, 19, 26, 0.65);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="safe">
+        <div class="logo">
+          <h1>InsightSelf</h1>
+          <p>更懂自己 · 原型 · 登录与注册字段校验</p>
+        </div>
+
+        <div class="card">
+          <h2>登录 · 已有账号</h2>
+          <div class="label">账号</div>
+          <div class="field"><span class="placeholder">字母数字 · 最长 12 位</span></div>
+          <div class="label">
+            密码
+            <span class="hint">可见性切换保留焦点</span>
+          </div>
+          <div class="field">
+            <span>••••••••</span>
+            <div class="eye" title="显示/隐藏密码">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="2" />
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </div>
+          </div>
+          <button type="button" class="btn">登录</button>
+          <div class="toast" style="display: none" id="loginErr"></div>
+          <details class="prd">
+            <summary>PRD 交互摘要</summary>
+            <p>
+              点击登录 → 前端非空校验 → 按钮 loading → 成功 Toast「登录成功」并跳转主页且清栈；失败区分账号不存在 /
+              密码错误 / 网络异常。
+            </p>
+          </details>
+        </div>
+
+        <div class="card">
+          <h2>注册 · 新账号</h2>
+          <div class="label">
+            账号
+            <span class="hint">提交时唯一性校验</span>
+          </div>
+          <div class="field"><span class="placeholder">仅字母数字 · ≤12</span></div>
+          <div class="label">
+            密码
+            <span class="hint">≤16 · 支持特殊字符</span>
+          </div>
+          <div class="field">
+            <span class="placeholder">输入密码</span>
+            <div class="eye">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-10-8-10-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 10 8 10 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24M3 3l18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <button type="button" class="btn">注册并填写资料</button>
+          <div class="link">已有账号？<a href="#">返回登录</a></div>
+          <details class="prd">
+            <summary>PRD 交互摘要</summary>
+            <p>注册成功后进入个人信息登记页；重复账号字段标红提示。</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

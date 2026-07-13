@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 生辰八字详情</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --card: rgba(255, 255, 255, 0.78);
+        --stroke: rgba(20, 22, 33, 0.08);
+        --shadow: 0 16px 50px rgba(18, 19, 26, 0.12);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+        --ink: rgba(18, 19, 26, 0.06);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--text);
+        background: radial-gradient(
+            1000px 680px at 30% 5%,
+            rgba(91, 103, 255, 0.18),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 720px at 85% 35%,
+            rgba(53, 182, 255, 0.16),
+            transparent 58%
+          ),
+          linear-gradient(160deg, var(--bg0), var(--bg1));
+      }
+
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .safe {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 18px 18px 0;
+      }
+
+      .feed {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding-bottom: 12px;
+      }
+
+      .status {
+        flex-shrink: 0;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+
+      .appbar {
+        flex-shrink: 0;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 8px 8px;
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .back {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.65);
+        display: grid;
+        place-items: center;
+      }
+
+      .titlewrap {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .title {
+        font-weight: 800;
+        font-size: 18px;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        opacity: 0.75;
+      }
+
+      .quote-card {
+        flex-shrink: 0;
+        margin-top: 4px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(91, 103, 255, 0.22);
+        background: linear-gradient(135deg, rgba(91, 103, 255, 0.1), rgba(53, 182, 255, 0.08));
+      }
+
+      .quote-card strong {
+        display: block;
+        font-size: 15px;
+        letter-spacing: -0.02em;
+        margin-bottom: 6px;
+      }
+
+      .quote-card p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.78);
+      }
+
+      .banner-warn {
+        flex-shrink: 0;
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 176, 32, 0.35);
+        background: rgba(255, 176, 32, 0.12);
+        font-size: 11px;
+        line-height: 1.45;
+        color: rgba(18, 19, 26, 0.82);
+      }
+
+      .banner-warn a {
+        color: #2f3bff;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .tabs {
+        flex-shrink: 0;
+        margin-top: 8px;
+        display: flex;
+        gap: 10px;
+        padding: 6px 8px;
+      }
+
+      .tab {
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.65);
+        font-size: 12px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.65);
+      }
+
+      .tab.active {
+        border-color: rgba(91, 103, 255, 0.35);
+        background: rgba(91, 103, 255, 0.12);
+        color: #2f3bff;
+      }
+
+      .card {
+        margin-top: 12px;
+        border: 1px solid var(--stroke);
+        background: var(--card);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 14px;
+      }
+
+      .hero {
+        border-radius: 18px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: radial-gradient(
+            120px 80px at 35% 35%,
+            rgba(91, 103, 255, 0.32),
+            transparent 66%
+          ),
+          radial-gradient(
+            140px 90px at 70% 70%,
+            rgba(53, 182, 255, 0.28),
+            transparent 70%
+          ),
+          rgba(255, 255, 255, 0.55);
+        padding: 14px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ink {
+        position: absolute;
+        inset: -40px -20px auto auto;
+        width: 220px;
+        height: 140px;
+        background: radial-gradient(circle at 30% 30%, var(--ink), transparent 60%),
+          radial-gradient(circle at 70% 60%, var(--ink), transparent 62%);
+        transform: rotate(-12deg);
+        pointer-events: none;
+      }
+
+      .herohead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .herohead strong {
+        font-size: 13px;
+        letter-spacing: -0.01em;
+      }
+
+      .pill {
+        font-size: 11px;
+        font-weight: 800;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(18, 19, 26, 0.06);
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        color: rgba(18, 19, 26, 0.7);
+      }
+
+      .hint {
+        margin-top: 8px;
+        font-size: 10px;
+        color: rgba(18, 19, 26, 0.45);
+      }
+
+      .radar {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .legend {
+        display: grid;
+        gap: 8px;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.78);
+        font-weight: 700;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .pct {
+        color: rgba(18, 19, 26, 0.55);
+        font-weight: 800;
+        font-size: 11px;
+      }
+
+      .section {
+        margin-top: 12px;
+      }
+
+      .sectionhead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .sectionhead strong {
+        font-size: 13px;
+        letter-spacing: -0.01em;
+      }
+
+      .cycle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .cycle-node {
+        flex: 1;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 800;
+        padding: 8px 4px;
+        border-radius: 12px;
+        border: 1px dashed rgba(18, 19, 26, 0.15);
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .cycle-arrow {
+        font-size: 12px;
+        opacity: 0.35;
+      }
+
+      .shishen {
+        margin-top: 10px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .sh-row {
+        display: grid;
+        grid-template-columns: 52px 1fr 34px;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .sh-row label {
+        font-size: 11px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.72);
+      }
+
+      .sh-bar {
+        height: 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(18, 19, 26, 0.05);
+        overflow: hidden;
+      }
+
+      .sh-fill {
+        height: 100%;
+        border-radius: 999px;
+      }
+
+      .sh-row .pct {
+        text-align: right;
+      }
+
+      details.bzi {
+        margin-top: 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.55);
+        padding: 0 12px;
+      }
+
+      details.bzi > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 10px 0;
+        font-size: 12px;
+        font-weight: 800;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      details.bzi > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      details.bzi > summary::after {
+        content: "▼";
+        font-size: 9px;
+        opacity: 0.45;
+      }
+
+      details.bzi[open] > summary::after {
+        content: "▲";
+      }
+
+      details.bzi .body {
+        padding: 0 0 12px;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.75);
+      }
+
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.76);
+      }
+
+      .stack {
+        margin-top: 10px;
+        height: 14px;
+        border-radius: 999px;
+        overflow: hidden;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(18, 19, 26, 0.05);
+        display: flex;
+      }
+
+      .seg {
+        height: 100%;
+      }
+
+      .tips {
+        margin-top: 10px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .tip {
+        padding: 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.7);
+        display: grid;
+        gap: 4px;
+      }
+
+      .tip strong {
+        font-size: 12px;
+      }
+
+      .tip span {
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.7);
+        line-height: 1.45;
+      }
+
+      .nav {
+        flex-shrink: 0;
+        height: 84px;
+        padding: 10px 14px 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(247, 247, 255, 0.1),
+          rgba(247, 247, 255, 0.78) 22%,
+          rgba(247, 247, 255, 0.92)
+        );
+        border-top: 1px solid rgba(18, 19, 26, 0.08);
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
+        align-items: end;
+      }
+
+      .nav .tabnav {
+        display: grid;
+        place-items: center;
+        gap: 6px;
+        font-size: 10px;
+        color: rgba(18, 19, 26, 0.55);
+        font-weight: 800;
+      }
+
+      .nav .tabnav.active {
+        color: rgba(18, 19, 26, 0.9);
+      }
+
+      .nav .tabnav .dot2 {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: transparent;
+      }
+
+      .nav .tabnav.active .dot2 {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+
+      .proto-foot {
+        text-align: center;
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.45);
+        padding: 8px 0 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone" role="img" aria-label="InsightSelf 生辰八字详情原型（含 PRD 交互标注）">
+      <div class="safe">
+        <div class="status">
+          <div>9:41</div>
+          <div>5G · 100%</div>
+        </div>
+
+        <div class="appbar">
+          <div class="left">
+            <div class="back" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M15 18l-6-6 6-6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="titlewrap">
+              <div class="title">生辰八字</div>
+              <div class="subtitle">五行 · 大运 · 建议</div>
+            </div>
+          </div>
+          <div class="back" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+              <path d="M12 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+              <path d="M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="quote-card">
+          <strong>天生的「甲木」生长者</strong>
+          <p>根系稳、枝干直，擅长在变化里寻找方向；需注意过刚易折，宜以节律与边界收束扩张。</p>
+        </div>
+
+        <div class="banner-warn">
+          您尚未填写出生时辰，八字排盘与大运流年<strong>仅供参考</strong>。
+          <a href="#">去个人中心补充</a>
+        </div>
+
+        <div class="tabs" aria-hidden="true">
+          <div class="tab">概览</div>
+          <div class="tab active">五行</div>
+          <div class="tab">建议</div>
+        </div>
+
+        <div class="feed">
+          <div class="card">
+            <div class="hero">
+              <div class="ink"></div>
+              <div class="herohead">
+                <strong>五行能量雷达</strong>
+                <div class="pill">点按顶点 · Tooltip</div>
+              </div>
+              <div class="hint">交互说明：点击雷达顶点显示精确百分比；相生相克链如下图（点击五行可看浮层说明）。</div>
+
+              <div class="radar">
+                <div aria-hidden="true">
+                  <svg width="156" height="156" viewBox="0 0 156 156" fill="none">
+                    <circle cx="78" cy="78" r="72" stroke="rgba(18,19,26,0.10)" stroke-width="2" />
+                    <circle cx="78" cy="78" r="54" stroke="rgba(18,19,26,0.09)" stroke-width="2" />
+                    <circle cx="78" cy="78" r="36" stroke="rgba(18,19,26,0.08)" stroke-width="2" />
+                    <circle cx="78" cy="78" r="18" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path d="M78 6L78 150" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path d="M146.47 55.75L9.53 100.25" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path d="M120.32 136.25L35.68 19.75" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path d="M35.68 136.25L120.32 19.75" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path d="M9.53 55.75L146.47 100.25" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path
+                      d="M78 29L111.08 67.25L89.75 107.24L55.67 125.98L49.78 63.31Z"
+                      fill="rgba(91,103,255,0.16)"
+                      stroke="rgba(91,103,255,0.55)"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                    <circle cx="78" cy="29" r="3.5" fill="rgba(91,103,255,0.85)" />
+                    <circle cx="111.08" cy="67.25" r="3.5" fill="rgba(31,191,115,0.85)" />
+                    <circle cx="89.75" cy="107.24" r="3.5" fill="rgba(255,176,32,0.85)" />
+                    <circle cx="55.67" cy="125.98" r="3.5" fill="rgba(68,74,92,0.85)" />
+                    <circle cx="49.78" cy="63.31" r="3.5" fill="rgba(53,182,255,0.85)" />
+                    <text x="78" y="18" text-anchor="middle" font-size="10" fill="rgba(18,19,26,0.55)" font-weight="700">
+                      木
+                    </text>
+                    <text x="135.8" y="57.5" text-anchor="middle" font-size="10" fill="rgba(18,19,26,0.55)" font-weight="700">
+                      火
+                    </text>
+                    <text x="114.2" y="147" text-anchor="middle" font-size="10" fill="rgba(18,19,26,0.55)" font-weight="700">
+                      土
+                    </text>
+                    <text x="41.8" y="147" text-anchor="middle" font-size="10" fill="rgba(18,19,26,0.55)" font-weight="700">
+                      金
+                    </text>
+                    <text x="20.2" y="57.5" text-anchor="middle" font-size="10" fill="rgba(18,19,26,0.55)" font-weight="700">
+                      水
+                    </text>
+                  </svg>
+                </div>
+
+                <div class="legend" aria-hidden="true">
+                  <div class="item">
+                    <div class="row">
+                      <span class="dot" style="background: rgba(91,103,255,0.85)"></span>
+                      木
+                    </div>
+                    <div class="pct">34%</div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <span class="dot" style="background: rgba(31,191,115,0.85)"></span>
+                      火
+                    </div>
+                    <div class="pct">18%</div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <span class="dot" style="background: rgba(255,176,32,0.85)"></span>
+                      土
+                    </div>
+                    <div class="pct">20%</div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <span class="dot" style="background: rgba(68,74,92,0.85)"></span>
+                      金
+                    </div>
+                    <div class="pct">12%</div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <span class="dot" style="background: rgba(53,182,255,0.85)"></span>
+                      水
+                    </div>
+                    <div class="pct">16%</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section">
+                <div class="sectionhead">
+                  <strong>相生相克（示意）</strong>
+                  <div class="pill">可点开</div>
+                </div>
+                <div class="cycle" aria-hidden="true">
+                  <div class="cycle-node">水<br />润下</div>
+                  <span class="cycle-arrow">→</span>
+                  <div class="cycle-node">木<br />生发</div>
+                  <span class="cycle-arrow">→</span>
+                  <div class="cycle-node">火<br />炎上</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="sectionhead">
+                <strong>日主 · 喜用</strong>
+                <div class="pill">甲木</div>
+              </div>
+              <div class="chips" aria-hidden="true">
+                <div class="chip">喜用：金水</div>
+                <div class="chip">幸运色：银灰 ·  Navy</div>
+                <div class="chip">幸运方位：西北</div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="sectionhead">
+                <strong>十神占比（柱形）</strong>
+                <div class="pill">点击柱子</div>
+              </div>
+              <div class="shishen">
+                <div class="sh-row">
+                  <label>比肩</label>
+                  <div class="sh-bar"><div class="sh-fill" style="width: 28%; background: rgba(91,103,255,0.65)"></div></div>
+                  <div class="pct">28%</div>
+                </div>
+                <div class="sh-row">
+                  <label>食神</label>
+                  <div class="sh-bar"><div class="sh-fill" style="width: 22%; background: rgba(31,191,115,0.55)"></div></div>
+                  <div class="pct">22%</div>
+                </div>
+                <div class="sh-row">
+                  <label>偏财</label>
+                  <div class="sh-bar"><div class="sh-fill" style="width: 18%; background: rgba(255,176,32,0.55)"></div></div>
+                  <div class="pct">18%</div>
+                </div>
+                <div class="sh-row">
+                  <label>七杀</label>
+                  <div class="sh-bar"><div class="sh-fill" style="width: 16%; background: rgba(230,90,90,0.45)"></div></div>
+                  <div class="pct">16%</div>
+                </div>
+                <div class="sh-row">
+                  <label>正印</label>
+                  <div class="sh-bar"><div class="sh-fill" style="width: 16%; background: rgba(53,182,255,0.55)"></div></div>
+                  <div class="pct">16%</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="sectionhead">
+                <strong>能量结构</strong>
+                <div class="pill">叠加条</div>
+              </div>
+              <div class="stack" aria-hidden="true">
+                <div class="seg" style="width: 34%; background: rgba(91,103,255,0.72)"></div>
+                <div class="seg" style="width: 18%; background: rgba(31,191,115,0.62)"></div>
+                <div class="seg" style="width: 20%; background: rgba(255,176,32,0.62)"></div>
+                <div class="seg" style="width: 12%; background: rgba(68,74,92,0.55)"></div>
+                <div class="seg" style="width: 16%; background: rgba(53,182,255,0.62)"></div>
+              </div>
+            </div>
+
+            <details class="bzi">
+              <summary>适合的行业与原因</summary>
+              <div class="body">
+                咨询、教研、创意策划等「结构化输出 + 迭代反馈」场景更契合当前比劫与食伤组合；避免长期处于无限责任制且无闭环回报的岗位。
+              </div>
+            </details>
+
+            <details class="bzi">
+              <summary>契合伴侣特质（示意）</summary>
+              <div class="body">
+                情绪颗粒度细、愿意书面复盘的对象更易与你形成互补；需规避习惯性冷战或含糊承诺型相处模式。
+              </div>
+            </details>
+
+            <details class="bzi">
+              <summary>大运 · 流年（分段折叠）</summary>
+              <div class="body">
+                当前大运偏重「资源整合」，流年逢冲宜放缓大额决策；界面可用年份 Segmented / Picker 切换（PRD）。
+              </div>
+            </details>
+
+            <div class="section">
+              <div class="sectionhead">
+                <strong>近期可执行建议</strong>
+                <div class="pill">落地</div>
+              </div>
+              <div class="tips" aria-hidden="true">
+                <div class="tip">
+                  <strong>用「金」节律聚焦</strong>
+                  <span>今天只选一个可衡量的小目标，番茄钟 25 分钟，先完成最小闭环。</span>
+                </div>
+                <div class="tip">
+                  <strong>用水复盘</strong>
+                  <span>三句话日记：今日耗能点？赋能点？明日微调什么？</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="proto-foot">下拉可与服务端同步重新生成评语 · 本子模块对应 Tab② PRD</p>
+        </div>
+      </div>
+
+      <div class="nav" aria-hidden="true">
+        <div class="tabnav">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21V10.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9 22v-7a3 3 0 0 1 6 0v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          主页
+          <div class="dot2"></div>
+        </div>
+        <div class="tabnav active">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          八字
+          <div class="dot2"></div>
+        </div>
+        <div class="tabnav">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 3a7 7 0 0 0 0 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          星座
+          <div class="dot2"></div>
+        </div>
+        <div class="tabnav">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M7 4h10a2 2 0 0 1 2 2v14l-7-3-7 3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          测评
+          <div class="dot2"></div>
+        </div>
+        <div class="tabnav">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M20 21a8 8 0 0 0-16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          我的
+          <div class="dot2"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "insightself-mockups",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node ./render_screenshots.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.59.1"
+  }
+}

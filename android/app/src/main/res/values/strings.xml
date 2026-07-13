@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- App 主题（必须保留！） -->
+    <style name="Theme.InsightSelf" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:fontFamily">sans</item>
+        <item name="android:colorAccent">#5B67FF</item>
+    </style>
+
+    <!-- ========== 通用 ========== -->
+    <string name="app_name">InsightSelf</string>
+    <string name="continue_btn">Continue</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="loading">Loading...</string>
+    <string name="refresh">Refresh</string>
+    <string name="logout">Logout</string>
+    <string name="language">Language</string>
+    <string name="chinese">简体中文</string>
+    <string name="english">English</string>
+    <string name="other_settings">Other Settings</string>
+    <string name="version">Version</string>
+    <string name="retry">Retry</string>
+    <string name="log_in_again">Log in again</string>
+
+    <!-- ========== 个人资料创建页面 ========== -->
+    <string name="create_your_profile">Create Your Profile</string>
+    <string name="profile_subtitle">Single profile for Bazi · Zodiac · Assessments</string>
+    <string name="nickname">Nickname</string>
+    <string name="nickname_placeholder">e.g. Morgan</string>
+    <string name="birth_date">Birth date</string>
+    <string name="birth_date_placeholder">YYYY-MM-DD</string>
+    <string name="birth_time">Birth time</string>
+    <string name="birth_time_placeholder">HH:mm</string>
+    <string name="birthplace">Birthplace</string>
+    <string name="birthplace_placeholder">City / Country</string>
+    <string name="gender">Gender</string>
+    <string name="gender_prefer_not">Prefer not to say</string>
+    <string name="gender_female">Female</string>
+    <string name="gender_male">Male</string>
+    <string name="calendar_type">Calendar type</string>
+    <string name="calendar_solar">Solar</string>
+    <string name="calendar_lunar">Lunar</string>
+    <string name="preference_lens">Preferred cultural lens</string>
+    <string name="preference_eastern">Eastern</string>
+    <string name="preference_western">Western</string>
+    <string name="preference_balanced">Balanced</string>
+    <string name="ai_enabled">Enable AI synthesis</string>
+    <string name="ai_description">Generate integrated insights from your data</string>
+    <string name="ai_info">You can refresh or disable AI anytime in settings.</string>
+
+    <!-- ========== 底部导航 ========== -->
+    <string name="nav_home">Home</string>
+    <string name="nav_bazi">Bazi</string>
+    <string name="nav_zodiac">Zodiac</string>
+    <string name="nav_tests">Tests</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- ========== 主页 ========== -->
+    <string name="home_greeting">Hi, %s</string>
+    <string name="integrated_insight">Your integrated insight</string>
+    <string name="profile_overview">Profile Overview</string>
+    <string name="today_astrology">Today · Astrology Indicators</string>
+    <string name="bazi_highlights">Bazi Highlights</string>
+    <string name="latest_assessments">Latest Assessments</string>
+    <string name="assessment_not_taken">Not taken yet</string>
+    <string name="view_details">View Details</string>
+    <string name="take_assessment">Take Assessment</string>
+    <string name="integrated_insight_title">Integrated Insight</string>
+    <string name="ai_report_title">AI / Template Report</string>
+    <string name="open_report">Open Report</string>
+    <string name="not_set">Not set</string>
+
+    <!-- ========== 八字页面 ========== -->
+    <string name="bazi_title">Bazi</string>
+    <string name="four_pillars">Four Pillars</string>
+    <string name="five_element_balance">Five Element Balance</string>
+    <string name="conclusion">Conclusion</string>
+    <string name="evidence">Evidence</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="demo_note">Demo Note</string>
+    <string name="regenerate_bazi">Regenerate Bazi Insight</string>
+    <string name="year">Year</string>
+    <string name="month">Month</string>
+    <string name="day">Day</string>
+    <string name="hour">Hour</string>
+    <string name="strongest">Strongest</string>
+    <string name="gentle_support">Gentle support</string>
+    <string name="pending">Pending</string>
+    <string name="simplified">Simplified</string>
+    <string name="explainable">Explainable</string>
+    <string name="important">Important</string>
+    <string name="generated_at">Generated %s</string>
+    <string name="demo_disclaimer_bazi">This is a simplified educational self-reflection result, not a professional Bazi engine.</string>
+    <string name="placeholder_section">This section will appear when the backend includes it.</string>
+
+    <!-- ========== 星座页面 ========== -->
+    <string name="zodiac_title">Zodiac</string>
+    <string name="daily_board">Daily board</string>
+    <string name="daily_board_with_date">Daily board - %s</string>
+    <string name="daily">Daily</string>
+    <string name="emotion">Emotion</string>
+    <string name="communication">Communication</string>
+    <string name="action">Action</string>
+    <string name="today_suggestion">Today Suggestion</string>
+    <string name="relationship_matching">Relationship Matching</string>
+    <string name="open_match">Open Relationship Match</string>
+    <string name="refresh_daily">Refresh Daily Board</string>
+    <string name="match_title">Relationship Match</string>
+    <string name="match_subtitle">Soft compatibility reflection</string>
+    <string name="target_profile">Target Profile</string>
+    <string name="calculate_match">Calculate Match</string>
+    <string name="match_result">Match Result</string>
+    <string name="communication_tips">Communication tips</string>
+    <string name="watch_outs">Watch-outs</string>
+    <string name="personality_tag">Personality tag</string>
+    <string name="optional_tag">Optional, e.g. INFP</string>
+    <string name="zodiac_score">Zodiac score</string>
+    <string name="personality_score">Personality score</string>
+    <string name="final_score">Final score</string>
+    <string name="target_nickname">Target nickname</string>
+    <string name="target_zodiac">Target zodiac</string>
+    <string name="collaboration_mode">Collaboration mode</string>
+    <string name="gentle">Gentle</string>
+    <string name="optional">Optional</string>
+    <string name="zodiac_disclaimer">A light daily reflection based on your saved profile. Use it as a prompt, not a prediction.</string>
+    <string name="match_description">Compare a target birth date and optional personality tag for a soft communication reflection.</string>
+    <string name="nickname_placeholder_short">e.g. Riley</string>
+    <string name="waiting">Waiting</string>
+    <string name="match_instruction">Enter a nickname and birth date to see a communication-focused match result.</string>
+    <string name="something_wrong">Something needs attention</string>
+    <string name="reflection">Reflection</string>
+    <string name="target">Target</string>
+    <string name="sign_label">Sign: %s</string>
+    <string name="balanced_communication">Balanced communication</string>
+
+    <!-- ========== 测评页面 ========== -->
+    <string name="assessments_title">Assessments</string>
+    <string name="assessments_subtitle">Short reflection tools for the demo</string>
+    <string name="latest_results">Latest Results</string>
+    <string name="no_results">No assessment results yet.</string>
+    <string name="start">Start</string>
+    <string name="view">View</string>
+    <string name="response_scale">Response Scale</string>
+    <string name="scale_description">Choose the response that feels closest right now.</string>
+    <string name="submit_assessment">Submit Assessment</string>
+    <string name="back_to_assessments">Back to Assessments</string>
+    <string name="back_to_home">Back to Home</string>
+    <string name="question">Question</string>
+    <string name="answered">Answered</string>
+    <string name="scale_hint">1 = not much like me, 5 = very much like me</string>
+    <string name="result_summary">Result summary</string>
+    <string name="saved_result">Saved result</string>
+    <string name="scores">Scores</string>
+    <string name="assessment_disclaimer">This result is for lightweight reflection and competition demonstration.</string>
+    <string name="start_assessment">Start %s</string>
+    <string name="answered_count">%1$d / %2$d answered</string>
+    <string name="before_submitting">Before submitting</string>
+    <string name="check">Check</string>
+    <string name="question_title">Question %d</string>
+    <string name="result_title">%s Result</string>
+    <string name="back_to_assessments_short">Back to Assessments</string>
+    <string name="result_not_found">This result is not loaded in the current session. Return to Assessments and open it again.</string>
+    <string name="result_summary_placeholder">Your result has been saved. Use it as a light prompt for reflection.</string>
+    <string name="no_scores">No score details were returned for this result.</string>
+    <string name="saved">Saved</string>
+    <string name="created">Created</string>
+    <string name="result_label_default">Result</string>
+    <string name="result_hero_description">A saved reflection result from your unified profile.</string>
+    <string name="assessment">Assessment</string>
+    <string name="details">Details</string>
+
+    <!-- ========== AI报告页面 ========== -->
+    <string name="report_title">AI / Template Report</string>
+    <string name="report_subtitle">Integrated self-reflection</string>
+    <string name="report_source">Report Source</string>
+    <string name="generated_by">Generated by</string>
+    <string name="safety_note">Safety Note</string>
+    <string name="refresh_latest">Refresh Latest</string>
+    <string name="generate_report">Generate / Refresh Report</string>
+    <string name="template_fallback">Template fallback for demo stability</string>
+    <string name="ai_synthesis">AI synthesis</string>
+    <string name="safety_message">This content is for self-reflection and competition demonstration only. It is not medical, legal, financial, psychological diagnosis, or fortune-telling advice.</string>
+    <string name="unknown">Unknown</string>
+    <string name="integrated_report">Integrated Report</string>
+    <string name="report">Report</string>
+    <string name="demo">Demo</string>
+    <string name="report_empty_placeholder">The report text is empty. Try generating again.</string>
+    <string name="template_fallback_message">Generated by template fallback for demo stability.</string>
+    <string name="ai_synthesis_message">Generated with AI synthesis.</string>
+    <string name="backend_service_message">Generated by the backend report service.</string>
+
+    <!-- ========== 认证页面 ========== -->
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="no_account">No account? Register</string>
+    <string name="have_account">Already have an account? Login</string>
+    <string name="register_and_fill">Register and fill profile</string>
+    <string name="demo_note_text">For emulator testing, start the backend on localhost:8080.</string>
+    <string name="existing_demo_account">Existing demo account</string>
+    <string name="letters_and_numbers">letters and numbers</string>
+    <string name="create_account">Create account</string>
+    <string name="checking_session">Checking your session...</string>
+    <string name="register_subtitle">Register first, then fill one unified profile</string>
+    <string name="new_demo_account">New demo account</string>
+
+    <!-- ========== 错误/提示消息 ========== -->
+    <string name="error_nickname_required">Nickname is required.</string>
+    <string name="error_birth_date_format">Birth date must use yyyy-MM-dd.</string>
+    <string name="error_birth_time_format">Birth time must use HH:mm:ss.</string>
+    <string name="error_birthplace_required">Birthplace is required.</string>
+    <string name="error_session_expired">Session expired. Please log in again.</string>
+    <string name="error_profile_save_failed">Profile could not be saved.</string>
+    <string name="error_server">Server error. Please check the profile fields.</string>
+    <string name="error_backend_unreachable">Cannot reach the backend. Start the server and try again.</string>
+    <string name="loading_assessments">Loading assessments</string>
+    <string name="loading_questions">Loading questions</string>
+    <string name="loading_bazi">Loading Bazi</string>
+    <string name="loading_zodiac">Loading Zodiac</string>
+    <string name="loading_report">Loading report</string>
+    <string name="generating">Generating</string>
+    <string name="calculating">Calculating</string>
+    <string name="calculating_match">Calculating match</string>
+    <string name="no_bazi_generated">No Bazi insight has been generated yet. Create one from your unified profile when you are ready.</string>
+    <string name="no_report_generated">No integrated report has been generated yet. The backend can create a template fallback for demo stability.</string>
+    <string name="profile_unavailable">Profile details are not available yet. Create your profile to personalize this space.</string>
+    <string name="zodiac_unavailable">Today\'s daily board will appear after the dashboard is generated from your profile.</string>
+    <string name="bazi_unavailable">Bazi highlights will show here once the backend has a profile to read.</string>
+    <string name="generate_bazi">Generate Bazi Insight</string>
+    <string name="generate_report_btn">Generate Report</string>
+
+    <!-- ========== 占位符文本 ========== -->
+    <string name="placeholder_pending">Pending</string>
+    <string name="placeholder_unknown">Unknown</string>
+    <string name="placeholder_empty">No content</string>
+    <string name="placeholder_recent">Recent</string>
+    <string name="placeholder_today">Today</string>
+    <string name="placeholder_default_suggestion">Choose one small action and keep the pace kind to yourself.</string>
+    <string name="placeholder_match_tips">Keep the conversation curious and specific.</string>
+    <string name="placeholder_report_ready">Your latest report is ready.</string>
+    <string name="zodiac">Zodiac</string>
+    <string name="edit">Edit</string>
+    <string name="updating_language">Updating language...</string>
+    <string name="wood">Wood</string>
+    <string name="fire">Fire</string>
+    <string name="earth">Earth</string>
+    <string name="metal">Metal</string>
+    <string name="water">Water</string>
+</resources>

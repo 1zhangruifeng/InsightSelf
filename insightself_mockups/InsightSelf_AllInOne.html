@@ -1,0 +1,4823 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InsightSelf — PRD + 原型（All-in-One）</title>
+  <style>
+    :root {
+      --panel: rgba(255,255,255,0.08);
+      --panel2: rgba(255,255,255,0.06);
+      --stroke: rgba(255,255,255,0.10);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.65);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "PingFang SC", sans-serif;
+      background: radial-gradient(900px 600px at 20% 0%, rgba(122,162,255,0.24), transparent 60%),
+                  radial-gradient(900px 600px at 80% 20%, rgba(90,220,255,0.18), transparent 55%),
+                  linear-gradient(160deg, #070a16, #0b1020);
+      color: var(--text);
+    }
+    .app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+    .side { position: sticky; top: 0; align-self: start; height: 100vh; padding: 18px 14px; border-right: 1px solid var(--stroke); background: rgba(0,0,0,0.18); backdrop-filter: blur(10px); }
+    .brand { padding: 12px 12px; border-radius: 14px; border: 1px solid var(--stroke); background: var(--panel); }
+    .brand h1 { margin: 0; font-size: 16px; letter-spacing: -0.02em; }
+    .brand p { margin: 6px 0 0; font-size: 12px; color: var(--muted); line-height: 1.45; }
+    .nav { margin-top: 14px; display: grid; gap: 8px; }
+    .navlink { text-decoration: none; color: var(--text); padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); background: var(--panel2); font-size: 13px; font-weight: 650; }
+    .navlink:hover { border-color: rgba(122,162,255,0.35); background: rgba(122,162,255,0.12); }
+
+    .main { padding: 22px 22px 60px; }
+    .sec { border: 1px solid var(--stroke); background: rgba(255,255,255,0.06); border-radius: 16px; padding: 16px; margin-bottom: 16px; }
+    .sec-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .sec h2 { margin: 0; font-size: 16px; letter-spacing: -0.02em; }
+    .sub { margin-top: 6px; font-size: 12px; color: var(--muted); }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.92em; background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.82); }
+    .sec-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn { height: 34px; padding: 0 12px; border-radius: 12px; border: 1px solid rgba(122,162,255,0.35); background: rgba(122,162,255,0.14); color: rgba(255,255,255,0.92); font-weight: 750; font-size: 12px; cursor: pointer; }
+    .btn.ghost { border-color: rgba(255,255,255,0.14); background: rgba(255,255,255,0.06); }
+
+    .frame-wrap { margin-top: 12px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.10); background: rgba(0,0,0,0.16); padding: 12px; overflow: hidden; }
+    .frame { width: 100%; height: 880px; border: 0; border-radius: 12px; background: #fff; }
+
+    @media (max-width: 980px) {
+      .app { grid-template-columns: 1fr; }
+      .side { position: relative; height: auto; border-right: 0; border-bottom: 1px solid var(--stroke); }
+      .frame { height: 820px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="side">
+      <div class="brand">
+        <h1>InsightSelf · All-in-One</h1>
+        <p>一个文件同时包含：PRD + 所有静态原型页。<br/>提示：每个区块可「新窗口打开」或「重载预览」。</p>
+      </div>
+      <nav class="nav"><a href="#sec-InsightSelf_PRD" class="navlink">PRD 文档</a>
+<a href="#sec-login_register" class="navlink">登录 / 注册</a>
+<a href="#sec-onboarding" class="navlink">个人信息登记</a>
+<a href="#sec-home_dashboard" class="navlink">主页 · 更懂自己</a>
+<a href="#sec-bazi_detail" class="navlink">生辰八字</a>
+<a href="#sec-zodiac_detail" class="navlink">星座解读</a>
+<a href="#sec-assessment_list" class="navlink">测评列表</a>
+<a href="#sec-assessment_question" class="navlink">测评二级页 · 作答</a>
+<a href="#sec-assessment_result" class="navlink">测评二级页 · 结果解读</a>
+<a href="#sec-profile_center" class="navlink">个人中心</a></nav>
+    </aside>
+
+    <main class="main">
+<section class="sec" id="sec-InsightSelf_PRD">
+  <div class="sec-head">
+    <div>
+      <h2>PRD 文档</h2>
+      <div class="sub">源文件：<code>group/insightself_mockups/InsightSelf_PRD.html</code></div>
+    </div>
+    <div class="sec-actions">
+      <button class="btn" data-open="InsightSelf_PRD">新窗口打开</button>
+      <button class="btn ghost" data-reload="InsightSelf_PRD">重载预览</button>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe class="frame" title="PRD 文档" data-frame="InsightSelf_PRD"></iframe>
+  </div>
+  <template id="tpl-InsightSelf_PRD"><!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InsightSelf — 产品需求文档（PRD）</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --text: #1a1d26;
+      --muted: #5c6370;
+      --accent: #3d5a80;
+      --border: #e2e6ef;
+      --code-bg: #eef1f8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+    }
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+    header.doc-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin: 2.25rem 0 0.75rem;
+      color: var(--accent);
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+    h2:first-of-type { border-top: none; padding-top: 0; }
+    h3 {
+      font-size: 1.05rem;
+      margin: 1.35rem 0 0.5rem;
+      color: var(--text);
+    }
+    h4 {
+      font-size: 0.95rem;
+      margin: 1rem 0 0.35rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    p { margin: 0.5rem 0; }
+    ul, ol { margin: 0.5rem 0 0.5rem 1.25rem; padding: 0; }
+    li { margin: 0.35rem 0; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.15rem;
+      margin: 0.85rem 0;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      background: var(--code-bg);
+      color: var(--accent);
+      font-weight: 600;
+      margin-right: 0.35rem;
+    }
+    code, .kbd {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.88em;
+      background: var(--code-bg);
+      padding: 0.12em 0.35em;
+      border-radius: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+      margin: 0.75rem 0;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.5rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--code-bg); font-weight: 600; }
+    .note {
+      font-size: 0.88rem;
+      color: var(--muted);
+      border-left: 3px solid var(--accent);
+      padding-left: 0.75rem;
+      margin: 0.75rem 0;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="doc-header">
+      <h1>InsightSelf — 产品需求文档（PRD）</h1>
+      <p class="meta">基于《InsightSelf 简单PRD》整理，并补充交互与状态细节。开发以 Android Studio 为主，真机预览以 Android 机型为基准。对应高保真 HTML 原型入口：<a href="insightself_mockups/index.html">insightself_mockups/index.html</a>。</p>
+    </header>
+
+    <main>
+      <h2>0. 环境与全局要求</h2>
+      <div class="card">
+        <p><span class="tag">平台</span> Android 原生（Android Studio）；布局与触控热区按 Material 与常见全面屏手势习惯设计。</p>
+        <p><span class="tag">语言</span> 支持简体中文（CH）与英文（EN）切换；切换后当前页面文案即时刷新，已填写的表单内容（除依赖语言的说明性标签外）保持不变；运势/解读等生成类内容按新语言重新拉取或本地重算（若实现为本地规则则切换语言后需重新应用对应文案包）。</p>
+        <p class="note">建议：语言与「偏中式 / 偏西式 / 平衡」偏好可联动默认展示权重（主页卡片排序、AI 话术倾向），但最终以用户在个人中心的选择为准。</p>
+      </div>
+
+      <h3>0.1 全局导航与手势</h3>
+      <ul>
+        <li>底部 Tab 共 5 项，顺序固定：① 更懂自己（主页）② 生辰八字 ③ 星座 ④ 信息测评 ⑤ 个人中心。</li>
+        <li>单击 Tab：切换根页面；当前 Tab 高亮；再点当前 Tab：可选实现「滚动到顶部」行为（建议主页与长列表页支持）。</li>
+        <li>系统返回键：在二级页（问卷、AI 弹层等）关闭当前层；在根 Tab 页可双击退出 App 或弹出「再按一次退出」（按课程/组内规范二选一）。</li>
+      </ul>
+
+      <h2>1. 登录 / 注册页</h2>
+
+      <h3>1.1 布局与字段</h3>
+      <ul>
+        <li>账号输入框：单行文本；占位符提示格式规则（字母数字，最长 12）。</li>
+        <li>密码输入框：支持显示/隐藏切换（眼睛图标）；切换时焦点不丢失。</li>
+        <li>主按钮：<code>登录</code>；次引导文案在按钮下方：<code>没有账号？去注册</code>（可点击整行）。</li>
+      </ul>
+
+      <h3>1.2 交互细节 — 已有账号登录</h3>
+      <table>
+        <thead>
+          <tr><th>动作</th><th>系统响应</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>点击登录</td>
+            <td>先做前端校验（非空）；通过后按钮进入加载态（禁用重复提交、显示进度）；请求服务端比对账号密码。</td>
+          </tr>
+          <tr>
+            <td>登录成功</td>
+            <td>Toast 或 Snackbar：<code>登录成功</code>（约 1.5–2s）；随后跳转主页 Tab①；清除登录页返回栈（避免返回又回到登录）。</td>
+          </tr>
+          <tr>
+            <td>登录失败</td>
+            <td>按钮恢复可点；错误提示明确区分「账号不存在」「密码错误」「网络异常」；停留在本页，保留已输入账号，密码可按组内安全策略决定是否清空。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>1.3 交互细节 — 注册</h3>
+      <ul>
+        <li>从登录页进入注册子页或同页切换模式；需有「返回登录」入口。</li>
+        <li>账号：实时或失焦校验 — 仅允许字母数字、长度 ≤12；提交时发起唯一性校验，重复则标红字段并提示「该账号已被注册」。</li>
+        <li>密码：允许大小写、数字、特殊字符；长度 ≤16；可选弱密码提示（过短、纯数字等）。</li>
+        <li>注册成功：跳转「个人信息登记」流程；首次必须完成必填项才可进入主页（或进入「占位主页」但核心功能锁定，建议直接引导填完）。</li>
+      </ul>
+
+      <h3>1.4 个人信息登记页</h3>
+      <table>
+        <thead>
+          <tr><th>字段</th><th>交互</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>用户昵称</td>
+            <td>必填；中文、字母、数字；最多 12 字符；输入法与计数同步显示剩余字数。</td>
+          </tr>
+          <tr>
+            <td>性别</td>
+            <td>单选（男 / 女）；选中态明显。</td>
+          </tr>
+          <tr>
+            <td>出生年月日</td>
+            <td>日期选择器（滚轮或日历）；选完后<strong>星座只读展示</strong>，自动根据日期计算并锁定编辑（与个人中心逻辑一致）。</td>
+          </tr>
+          <tr>
+            <td>出生时辰</td>
+            <td>选填；时辰选择器（可提供「不详」选项以免影响八字完整性提示）。</td>
+          </tr>
+          <tr>
+            <td>出生地</td>
+            <td>省 → 市 → 区三级联动；区域范围含中国大陆 + 香港 + 澳门。</td>
+          </tr>
+          <tr>
+            <td>偏好</td>
+            <td>中式 / 西式 / 平衡；语言 CH / EN；保存后立即应用全局文案。</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">底部主按钮：<code>完成并进入</code>；未填必填项点击时逐项锚定到第一个错误字段并抖动或滚动聚焦。</p>
+
+      <h2>2. App 主页 — 「更懂自己」综合解读</h2>
+
+      <h3>2.1 顶部问候区</h3>
+      <ul>
+        <li>文案：<code>{昵称}，早上好 / 下午好 / 晚上好</code>，规则建议：5:00–11:59 早上；12:00–17:59 下午；其余晚上。</li>
+        <li>若昵称为空（异常数据）：降级为「用户」或账号掩码。</li>
+      </ul>
+
+      <h3>2.2 数据聚合卡片（纵向列表）</h3>
+      <h4>卡片一：今日运势</h4>
+      <ul>
+        <li>展示：综合分数、幸运颜色、幸运方位、幸运数字、建议做 / 不建议做（可与万年历数据源对齐）。</li>
+        <li>交互：卡片默认可折叠摘要行 + 展开全文；首次进入当日可默认展开第一项。</li>
+        <li>下拉刷新（SwipeRefresh）：重新请求当日运势；加载时骨架屏或顶部进度条。</li>
+      </ul>
+      <h4>卡片二：星象解读</h4>
+      <ul>
+        <li>太阳 / 月亮 / 上升分段展示；过长正文「展开更多」。</li>
+        <li>横滑分段 Tab（可选）：在三块内容间切换以减少纵向滚动。</li>
+      </ul>
+      <h4>卡片三：最新心理测评结论</h4>
+      <ul>
+        <li>展示最近一次已完成测评的摘要标题 + 一行结论；右侧箭头进入测评模块对应报告详情页。</li>
+        <li>若无完成记录：空状态插画 + <code>去测评</code> 跳转 Tab④。</li>
+      </ul>
+
+      <h3>2.3 AI 综合解读助手（侧边入口 + 底部弹层）</h3>
+      <ul>
+        <li>常驻浮动入口（右侧中下）：文案示例 <code>点我试试 AI 综合解读</code>；弱呼吸动效或红点仅用于首次引导（可配置只出现一次）。</li>
+        <li>点击入口：自底部上拉 <strong>半屏至 90% 高度</strong> 对话框；背景蒙层 40% 黑色，点击蒙层 = 触发关闭确认（与关闭按钮一致）。</li>
+        <li>对话区：左侧 AI 头像；首条消息或等待态显示 <code>正在解析中……</code>（加载动画）；用户侧输入框固定在弹层底部，发送后滚到底部。</li>
+        <li>仅由此入口打开时进入对话上下文；主页其他区域点击不触发 AI。</li>
+        <li>关闭：右上角 <code>×</code> 或下滑 dismiss（若实现 BottomSheet）；弹出二次确认：<code>是否退出当前对话？</code> — 选项 <code>继续对话</code> / <code>退出</code>；退出则销毁当前会话 UI（是否保留服务端会话由实现决定，原型级可只做前端清空）。</li>
+      </ul>
+
+      <h2>3. 生辰八字模块（Tab②）</h2>
+      <ul>
+        <li><strong>顶部一句评价：</strong>大字标题 + 副文案；支持下拉刷新同步后端重新生成（若有）。</li>
+        <li><strong>五行雷达图：</strong>轻触数据点显示精确百分比 Tooltip；双指缩放可选（低配机可禁用）；图例颜色与五行一致。</li>
+        <li><strong>相生相克：</strong>图示或小图标链；点击某一五行弹出简短说明浮层。</li>
+        <li><strong>解读区：</strong>喜用神、幸运颜色 / 方位 / 数字分段标题清晰；支持与主页卡片跳转互相引用（ deeplink 可选）。</li>
+        <li><strong>建议卡片：</strong>行业建议、伴侣契合、大运、流年 —— 每项默认可折叠；流年可按年份 Segmented 切换。</li>
+        <li><strong>十神柱形图：</strong>点击柱子高亮并在下方展示该十神解释段落。</li>
+        <li>若缺少时辰：在顶部横幅提示「未填写时辰，排盘仅供参考」，并提供跳转个人中心的链接。</li>
+      </ul>
+
+      <h2>4. 星座解读模块（Tab③）</h2>
+      <ul>
+        <li><strong>顶部个性化一句：</strong>格式如 <code>日狮子 + 月水瓶 + 升双鱼</code> 主标题 + 标签式副标题；分享按钮（可选）复制纯文本。</li>
+        <li><strong>动态看板：</strong>情绪 / 交流 / 行动力三维度得分或星级；标注「基于当日相位」；切换日期查看历史（日历图标）。</li>
+        <li><strong>核心解读：</strong>与主页星象卡片一致但信息更全；二级匹配模型输出分层建议 —— 采用折叠面板：<code>沟通策略</code> <code>风险提示</code> <code>合作方式</code>。</li>
+        <li>下拉刷新更新当日动态数据；失败时使用上次缓存并 Toast「网络异常，显示缓存内容」。</li>
+      </ul>
+
+      <h2>5. 信息测评模块（Tab④）</h2>
+      <ul>
+        <li>列表四项问卷：每项包含标题、一行简介、 estimated 时长、上次完成时间（若有）、状态标签（未开始 / 进行中 / 已完成）。</li>
+        <li>点击进入二级页：顶部进度条（题号 x / N）；题型支持单选、李克特量表；中途返回弹出确认：<code>进度将保存</code> 或 <code>放弃本次作答</code>（按实现选择）。</li>
+        <li>提交成功：结果解读页（滚动长文 + 分享）；返回列表该项标记已完成并更新时间戳。</li>
+        <li>主页「最新测评结论」与此列表第一条已完成测评同步。</li>
+      </ul>
+      <p class="note">问卷名称保留中英文全称缩写（BFI-10、ECR-R、Career Anchors、MBTI 模拟量表）以符合学术/产品说明习惯。</p>
+
+      <h2>6. 个人中心（Tab⑤）</h2>
+      <ul>
+        <li>信息只读展示 + 右上角或行内 <code>编辑</code>；编辑态下表单项与注册后资料页一致。</li>
+        <li>修改密码：需原密码 + 新密码 + 确认新密码；强度规则与注册一致。</li>
+        <li>语言与风格偏好修改后全局立即刷新；若当前在 AI 弹层中，关闭后下次打开应用新偏好。</li>
+        <li><code>登出</code>：二次确认「确定退出登录？」；确认后清空本地 Token，回到登录页。</li>
+      </ul>
+
+      <h2>7. 通用状态与非功能要求（建议写入验收）</h2>
+      <table>
+        <thead>
+          <tr><th>类型</th><th>要求</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>加载</td>
+            <td>列表与卡片请求超过 300ms 显示加载；关键路径不可无反馈连点。</td>
+          </tr>
+          <tr>
+            <td>空状态</td>
+            <td>每个列表需有空状态插画与主行动按钮。</td>
+          </tr>
+          <tr>
+            <td>错误</td>
+            <td>网络错误可重试；业务错误文案口语化且可操作。</td>
+          </tr>
+          <tr>
+            <td>无障碍</td>
+            <td>主要按钮与 Tab 补充 contentDescription；图表关键数据提供文本摘要。</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <footer>
+      <p>文档版本：扩展 PRD（HTML） · 源文件：<code>InsightSelf 简单PRD.md</code> · 原型：<a href="insightself_mockups/index.html">insightself_mockups/index.html</a></p>
+    </footer>
+  </div>
+</body>
+</html>
+</template>
+</section>
+
+<section class="sec" id="sec-login_register">
+  <div class="sec-head">
+    <div>
+      <h2>登录 / 注册</h2>
+      <div class="sub">源文件：<code>group/insightself_mockups/login_register.html</code></div>
+    </div>
+    <div class="sec-actions">
+      <button class="btn" data-open="login_register">新窗口打开</button>
+      <button class="btn ghost" data-reload="login_register">重载预览</button>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe class="frame" title="登录 / 注册" data-frame="login_register"></iframe>
+  </div>
+  <template id="tpl-login_register"><!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 登录 / 注册</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --stroke: rgba(20, 22, 33, 0.08);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, "PingFang SC", sans-serif;
+        background: linear-gradient(160deg, var(--bg0), var(--bg1));
+        color: var(--text);
+        min-height: 100%;
+      }
+      .phone {
+        width: 390px;
+        margin: 24px auto 48px;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .safe {
+        padding: 22px 18px 28px;
+      }
+      .logo {
+        text-align: center;
+        margin-bottom: 18px;
+      }
+      .logo h1 {
+        margin: 0;
+        font-size: 22px;
+        letter-spacing: -0.03em;
+      }
+      .logo p {
+        margin: 6px 0 0;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .card {
+        border: 1px solid var(--stroke);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(14px);
+        padding: 16px;
+        margin-bottom: 14px;
+      }
+      .card h2 {
+        margin: 0 0 12px;
+        font-size: 15px;
+      }
+      .label {
+        font-size: 11px;
+        color: var(--muted);
+        margin: 12px 0 6px;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .hint {
+        font-size: 10px;
+        color: rgba(91, 103, 255, 0.95);
+        font-weight: 700;
+      }
+      .field {
+        height: 46px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+        background: rgba(255, 255, 255, 0.92);
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 14px;
+      }
+      .field span.placeholder {
+        color: rgba(18, 19, 26, 0.38);
+      }
+      .eye {
+        padding: 6px;
+        border-radius: 10px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        display: grid;
+        place-items: center;
+      }
+      .eye svg {
+        width: 18px;
+        height: 18px;
+        opacity: 0.65;
+      }
+      .btn {
+        margin-top: 16px;
+        width: 100%;
+        height: 50px;
+        border: 0;
+        border-radius: 16px;
+        font-weight: 800;
+        font-size: 15px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        box-shadow: 0 14px 34px rgba(91, 103, 255, 0.28);
+      }
+      .btn.loading {
+        opacity: 0.65;
+        pointer-events: none;
+      }
+      .link {
+        text-align: center;
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .link a {
+        color: #2f3bff;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .toast {
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        font-size: 11px;
+        border: 1px solid rgba(230, 90, 90, 0.25);
+        background: rgba(230, 90, 90, 0.08);
+        color: #a02828;
+      }
+      .toast.ok {
+        border-color: rgba(31, 191, 115, 0.35);
+        background: rgba(31, 191, 115, 0.1);
+        color: #14663d;
+      }
+      details.prd {
+        margin-top: 10px;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      details.prd summary {
+        cursor: pointer;
+        font-weight: 700;
+        color: rgba(18, 19, 26, 0.65);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="safe">
+        <div class="logo">
+          <h1>InsightSelf</h1>
+          <p>更懂自己 · 原型 · 登录与注册字段校验</p>
+        </div>
+
+        <div class="card">
+          <h2>登录 · 已有账号</h2>
+          <div class="label">账号</div>
+          <div class="field"><span class="placeholder">字母数字 · 最长 12 位</span></div>
+          <div class="label">
+            密码
+            <span class="hint">可见性切换保留焦点</span>
+          </div>
+          <div class="field">
+            <span>••••••••</span>
+            <div class="eye" title="显示/隐藏密码">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="2" />
+                <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </div>
+          </div>
+          <button type="button" class="btn">登录</button>
+          <div class="toast" style="display: none" id="loginErr"></div>
+          <details class="prd">
+            <summary>PRD 交互摘要</summary>
+            <p>
+              点击登录 → 前端非空校验 → 按钮 loading → 成功 Toast「登录成功」并跳转主页且清栈；失败区分账号不存在 /
+              密码错误 / 网络异常。
+            </p>
+          </details>
+        </div>
+
+        <div class="card">
+          <h2>注册 · 新账号</h2>
+          <div class="label">
+            账号
+            <span class="hint">提交时唯一性校验</span>
+          </div>
+          <div class="field"><span class="placeholder">仅字母数字 · ≤12</span></div>
+          <div class="label">
+            密码
+            <span class="hint">≤16 · 支持特殊字符</span>
+          </div>
+          <div class="field">
+            <span class="placeholder">输入密码</span>
+            <div class="eye">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-10-8-10-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 10 8 10 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24M3 3l18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+          <button type="button" class="btn">注册并填写资料</button>
+          <div class="link">已有账号？<a href="#">返回登录</a></div>
+          <details class="prd">
+            <summary>PRD 交互摘要</summary>
+            <p>注册成功后进入个人信息登记页；重复账号字段标红提示。</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+</template>
+</section>
+
+<section class="sec" id="sec-onboarding">
+  <div class="sec-head">
+    <div>
+      <h2>个人信息登记</h2>
+      <div class="sub">源文件：<code>group/insightself_mockups/onboarding.html</code></div>
+    </div>
+    <div class="sec-actions">
+      <button class="btn" data-open="onboarding">新窗口打开</button>
+      <button class="btn ghost" data-reload="onboarding">重载预览</button>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe class="frame" title="个人信息登记" data-frame="onboarding"></iframe>
+  </div>
+  <template id="tpl-onboarding"><!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 注册后 · 个人信息登记</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --card: rgba(255, 255, 255, 0.78);
+        --stroke: rgba(20, 22, 33, 0.08);
+        --shadow: 0 16px 50px rgba(18, 19, 26, 0.12);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+        --chip: rgba(18, 19, 26, 0.06);
+        --chip-stroke: rgba(18, 19, 26, 0.10);
+        --chip-on: rgba(91, 103, 255, 0.12);
+        --chip-on-stroke: rgba(91, 103, 255, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, sans-serif;
+        color: var(--text);
+        background: radial-gradient(
+            1000px 700px at 30% 10%,
+            rgba(91, 103, 255, 0.24),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 650px at 80% 30%,
+            rgba(53, 182, 255, 0.22),
+            transparent 55%
+          ),
+          linear-gradient(160deg, var(--bg0), var(--bg1));
+      }
+
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        background: transparent;
+        position: relative;
+      }
+
+      .safe {
+        padding: 18px 18px 16px;
+      }
+
+      .status {
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+
+      .appbar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 10px;
+        padding: 10px 8px;
+      }
+
+      .back {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.65);
+        display: grid;
+        place-items: center;
+      }
+
+      .titlewrap {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+
+      .title {
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+
+      .card {
+        margin-top: 12px;
+        border: 1px solid var(--stroke);
+        background: var(--card);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 16px;
+      }
+
+      .field {
+        margin-top: 12px;
+      }
+
+      .label {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .input {
+        height: 44px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+        background: rgba(255, 255, 255, 0.8);
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+
+      .placeholder {
+        color: rgba(18, 19, 26, 0.40);
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        opacity: 0.7;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .helper {
+        margin-top: 14px;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        line-height: 1.4;
+      }
+
+      .section {
+        margin-top: 16px;
+      }
+
+      .section h3 {
+        margin: 0 0 10px 0;
+        font-size: 13px;
+        letter-spacing: -0.01em;
+      }
+
+      .chips {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--chip-stroke);
+        background: var(--chip);
+        font-size: 12px;
+        font-weight: 600;
+        color: rgba(18, 19, 26, 0.82);
+      }
+
+      .chip.on {
+        background: var(--chip-on);
+        border-color: var(--chip-on-stroke);
+        color: #2f3bff;
+      }
+
+      .toggle {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(18, 19, 26, 0.10);
+        background: rgba(255, 255, 255, 0.70);
+      }
+
+      .toggle .tlabel {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .toggle .tlabel strong {
+        font-size: 13px;
+      }
+
+      .toggle .tlabel span {
+        font-size: 11px;
+        color: var(--muted);
+      }
+
+      .switch {
+        width: 46px;
+        height: 28px;
+        border-radius: 999px;
+        background: rgba(91, 103, 255, 0.45);
+        border: 1px solid rgba(91, 103, 255, 0.60);
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .switch::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 21px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 6px 14px rgba(18, 19, 26, 0.14);
+      }
+
+      .cta {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 16px 18px 24px;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(247, 247, 255, 0.75) 28%,
+          rgba(247, 247, 255, 0.92)
+        );
+      }
+
+      .button {
+        height: 52px;
+        border-radius: 18px;
+        border: 0;
+        width: 100%;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: white;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        font-size: 15px;
+        box-shadow: 0 16px 40px rgba(91, 103, 255, 0.28);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .note {
+        margin-top: 10px;
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.52);
+        text-align: center;
+        line-height: 1.35;
+      }
+
+      .readonly {
+        opacity: 0.92;
+        background: rgba(18, 19, 26, 0.03);
+      }
+
+      .counter {
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.42);
+        font-weight: 600;
+      }
+
+      .prd-tag {
+        font-size: 10px;
+        font-weight: 700;
+        color: #2f3bff;
+        background: rgba(91, 103, 255, 0.1);
+        border: 1px solid rgba(91, 103, 255, 0.22);
+        padding: 3px 8px;
+        border-radius: 999px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone" role="img" aria-label="InsightSelf 个人信息登记原型（对应 PRD 注册后必填/选填）">
+      <div class="safe">
+        <div class="status">
+          <div>9:41</div>
+          <div>5G · 100%</div>
+        </div>
+
+        <div class="appbar">
+          <div class="back" aria-hidden="true">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 18l-6-6 6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="titlewrap">
+            <div class="title">完善个人档案</div>
+            <div class="subtitle">单次建档 · 八字 / 星座 / 测评共用</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field">
+            <div class="label">
+              昵称（必填）
+              <span class="counter">0 / 12</span>
+              <span class="prd-tag">中英数字</span>
+            </div>
+            <div class="input">
+              <span class="placeholder">例如：小彤</span>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>性别（必选）</h3>
+            <div class="chips" aria-hidden="true">
+              <div class="chip on">女</div>
+              <div class="chip">男</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <div class="label">出生日期（必选）</div>
+              <div class="input">
+                <span class="placeholder">YYYY-MM-DD</span>
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8 7V4M16 7V4M5 11h14M6 20h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="field">
+              <div class="label">出生时辰（选填）</div>
+              <div class="input">
+                <span class="placeholder">时辰 / 不详</span>
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 8v5l3 2M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">
+              星座
+              <span class="prd-tag">根据生日自动推算 · 只读</span>
+            </div>
+            <div class="input readonly">
+              <span>双子座（示例）</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="label">
+              出生地（选填）
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="input">
+              <span class="placeholder">省 · 市 · 区（含港澳台）</span>
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 18l6-6-6-6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>文化偏好（偏中式 / 偏西式 / 平衡）</h3>
+            <div class="chips" aria-hidden="true">
+              <div class="chip">偏中式</div>
+              <div class="chip">偏西式</div>
+              <div class="chip on">平衡</div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>应用语言 · CH / EN</h3>
+            <div class="chips" aria-hidden="true">
+              <div class="chip on">简体中文</div>
+              <div class="chip">English</div>
+            </div>
+          </div>
+
+          <div class="toggle" aria-hidden="true">
+            <div class="tlabel">
+              <strong>允许 AI 综合解读</strong>
+              <span>主页侧边助手仅在开启时使用云端叙述引擎</span>
+            </div>
+            <div class="switch"></div>
+          </div>
+
+          <div class="helper">
+            交互提示：未完成必填项点击「继续」时，应滚动并聚焦到首个错误字段（示意文案）。
+            档案将作为八字、星座与问卷的统一数据源。
+          </div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <button class="button" type="button">
+          完成并进入
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style="opacity: 0.95"
+          >
+            <path
+              d="M5 12h14M13 6l6 6-6 6"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <div class="note">可在「我的」中修改语言、偏好或关闭 AI。</div>
+      </div>
+    </div>
+  </body>
+</html>
+</template>
+</section>
+
+<section class="sec" id="sec-home_dashboard">
+  <div class="sec-head">
+    <div>
+      <h2>主页 · 更懂自己</h2>
+      <div class="sub">源文件：<code>group/insightself_mockups/home_dashboard.html</code></div>
+    </div>
+    <div class="sec-actions">
+      <button class="btn" data-open="home_dashboard">新窗口打开</button>
+      <button class="btn ghost" data-reload="home_dashboard">重载预览</button>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe class="frame" title="主页 · 更懂自己" data-frame="home_dashboard"></iframe>
+  </div>
+  <template id="tpl-home_dashboard"><!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 主页 · 更懂自己</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --card: rgba(255, 255, 255, 0.78);
+        --stroke: rgba(20, 22, 33, 0.08);
+        --shadow: 0 16px 50px rgba(18, 19, 26, 0.12);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+        --good: #1fbf73;
+        --warn: #ffb020;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei",
+          sans-serif;
+        color: var(--text);
+        background: radial-gradient(
+            1100px 720px at 25% 0%,
+            rgba(91, 103, 255, 0.22),
+            transparent 62%
+          ),
+          radial-gradient(
+            900px 700px at 85% 30%,
+            rgba(53, 182, 255, 0.18),
+            transparent 58%
+          ),
+          linear-gradient(160deg, var(--bg0), var(--bg1));
+      }
+
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: radial-gradient(
+            1100px 720px at 25% 0%,
+            rgba(91, 103, 255, 0.16),
+            transparent 62%
+          ),
+          radial-gradient(
+            900px 700px at 85% 30%,
+            rgba(53, 182, 255, 0.14),
+            transparent 58%
+          ),
+          linear-gradient(160deg, var(--bg0), var(--bg1));
+      }
+
+      .safe {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 18px 18px 0;
+      }
+
+      .feed {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .status {
+        height: 22px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+
+      .top {
+        margin-top: 14px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      .hello {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .hello strong {
+        font-size: 20px;
+        letter-spacing: -0.02em;
+      }
+
+      .hello span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .pull-hint {
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.45);
+        margin-top: 4px;
+      }
+
+      .avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 16px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.74);
+        display: grid;
+        place-items: center;
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        opacity: 0.75;
+      }
+
+      .grid {
+        margin-top: 14px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .card {
+        border: 1px solid var(--stroke);
+        background: var(--card);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 14px;
+      }
+
+      .cardhead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .cardhead strong {
+        font-size: 13px;
+        letter-spacing: -0.01em;
+      }
+
+      .badge {
+        font-size: 11px;
+        font-weight: 700;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(91, 103, 255, 0.1);
+        color: #2f3bff;
+        border: 1px solid rgba(91, 103, 255, 0.25);
+      }
+
+      .score-row {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .score-ring {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        border: 8px solid rgba(91, 103, 255, 0.15);
+        border-top-color: var(--primary);
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+
+      .luck-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        font-size: 11px;
+      }
+
+      .luck {
+        padding: 8px 10px;
+        border-radius: 12px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.65);
+      }
+
+      .luck b {
+        display: block;
+        font-size: 10px;
+        color: var(--muted);
+        margin-bottom: 2px;
+      }
+
+      .swatch {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .sw {
+        width: 14px;
+        height: 14px;
+        border-radius: 5px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+      }
+
+      .list-dos {
+        margin-top: 10px;
+        display: grid;
+        gap: 6px;
+        font-size: 12px;
+      }
+
+      .list-dos .ok {
+        color: rgba(31, 191, 115, 0.95);
+        font-weight: 700;
+      }
+
+      .list-dos .no {
+        color: rgba(230, 90, 90, 0.9);
+        font-weight: 700;
+      }
+
+      details.icard {
+        margin-top: 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.55);
+        padding: 0 12px;
+      }
+
+      details.icard > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 10px 0;
+        font-size: 12px;
+        font-weight: 700;
+        color: rgba(18, 19, 26, 0.78);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      details.icard > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      details.icard > summary::after {
+        content: "▼";
+        font-size: 9px;
+        opacity: 0.45;
+      }
+
+      details.icard[open] > summary::after {
+        content: "▲";
+      }
+
+      details.icard .body {
+        padding: 0 0 12px;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.78);
+      }
+
+      .seg-tabs {
+        margin-top: 10px;
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .seg {
+        flex: 0 0 auto;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.65);
+        font-size: 11px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.55);
+      }
+
+      .seg.on {
+        border-color: rgba(91, 103, 255, 0.35);
+        background: rgba(91, 103, 255, 0.12);
+        color: #2f3bff;
+      }
+
+      .meters {
+        margin-top: 12px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .meter {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .meter label {
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.78);
+        font-weight: 600;
+      }
+
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(18, 19, 26, 0.05);
+        overflow: hidden;
+      }
+
+      .fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+
+      .fill.good {
+        background: linear-gradient(135deg, var(--good), #59d98f);
+      }
+
+      .fill.warn {
+        background: linear-gradient(135deg, var(--warn), #ffcf6a);
+      }
+
+      .assess-row {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .assess-row p {
+        margin: 0;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.78);
+        line-height: 1.45;
+      }
+
+      .chev {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 10px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        display: grid;
+        place-items: center;
+      }
+
+      .fab {
+        position: absolute;
+        right: 16px;
+        bottom: 96px;
+        z-index: 4;
+        max-width: 168px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(91, 103, 255, 0.35);
+        background: linear-gradient(135deg, rgba(91, 103, 255, 0.95), rgba(53, 182, 255, 0.92));
+        color: #fff;
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 1.35;
+        text-align: left;
+        box-shadow: 0 14px 36px rgba(91, 103, 255, 0.35);
+        cursor: pointer;
+        animation: pulse 2.8s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 14px 36px rgba(91, 103, 255, 0.35);
+        }
+        50% {
+          transform: scale(1.02);
+          box-shadow: 0 18px 44px rgba(91, 103, 255, 0.45);
+        }
+      }
+
+      .sheet-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 8;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.22s ease;
+      }
+
+      .phone.ai-open .sheet-layer {
+        pointer-events: auto;
+        opacity: 1;
+      }
+
+      .sheet-dim {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 12, 20, 0.42);
+      }
+
+      .sheet {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 78%;
+        background: rgba(253, 253, 255, 0.98);
+        border-radius: 22px 22px 0 0;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        box-shadow: 0 -20px 50px rgba(18, 19, 26, 0.12);
+        transform: translateY(105%);
+        transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+        display: flex;
+        flex-direction: column;
+        padding-bottom: env(safe-area-inset-bottom, 0);
+      }
+
+      .phone.ai-open .sheet {
+        transform: translateY(0);
+      }
+
+      .sheet-head {
+        padding: 12px 14px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        border-bottom: 1px solid rgba(18, 19, 26, 0.06);
+      }
+
+      .sheet-head h3 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .sheet-close {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+      }
+
+      .chat {
+        flex: 1;
+        overflow-y: auto;
+        padding: 14px;
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+
+      .bubble {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        max-width: 92%;
+      }
+
+      .ai-av {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .bubble .text {
+        padding: 10px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.92);
+        font-size: 12px;
+        line-height: 1.5;
+        color: rgba(18, 19, 26, 0.85);
+      }
+
+      .typing {
+        display: inline-flex;
+        gap: 4px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .dot3 span {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--muted);
+        display: inline-block;
+        animation: b 1.1s infinite ease-in-out both;
+      }
+
+      .dot3 span:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+
+      .dot3 span:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      @keyframes b {
+        0%,
+        80%,
+        100% {
+          opacity: 0.25;
+          transform: scale(0.85);
+        }
+        40% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .sheet-input {
+        padding: 10px 14px 16px;
+        border-top: 1px solid rgba(18, 19, 26, 0.06);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .sheet-input input {
+        flex: 1;
+        height: 40px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+        padding: 0 12px;
+        font-size: 13px;
+      }
+
+      .send {
+        height: 40px;
+        padding: 0 14px;
+        border-radius: 14px;
+        border: 0;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #fff;
+        font-weight: 800;
+        font-size: 12px;
+      }
+
+      .dialog-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 12;
+        background: rgba(10, 12, 20, 0.38);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+      }
+
+      .phone.dialog-open .dialog-layer {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .dialog {
+        width: 100%;
+        max-width: 300px;
+        background: #fff;
+        border-radius: 20px;
+        padding: 18px 16px 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        box-shadow: var(--shadow);
+      }
+
+      .dialog h4 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+
+      .dialog p {
+        margin: 0 0 16px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .dialog-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .dialog-actions button {
+        height: 42px;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+      }
+
+      .btn-ghost {
+        border: 1px solid rgba(18, 19, 26, 0.14);
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      .btn-danger {
+        border: 0;
+        background: rgba(230, 90, 90, 0.12);
+        color: #c03535;
+      }
+
+      .nav {
+        flex-shrink: 0;
+        height: 84px;
+        padding: 10px 14px 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(247, 247, 255, 0.1),
+          rgba(247, 247, 255, 0.78) 22%,
+          rgba(247, 247, 255, 0.92)
+        );
+        border-top: 1px solid rgba(18, 19, 26, 0.08);
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
+        align-items: end;
+      }
+
+      .tab {
+        display: grid;
+        place-items: center;
+        gap: 6px;
+        font-size: 10px;
+        color: rgba(18, 19, 26, 0.55);
+        font-weight: 700;
+      }
+
+      .tab .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: transparent;
+      }
+
+      .tab.active {
+        color: rgba(18, 19, 26, 0.9);
+      }
+
+      .tab.active .dot {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+
+      .proto-note {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 12px;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.45);
+        max-width: 420px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone" id="phone" aria-label="InsightSelf 主页原型（含 AI 底部弹层交互演示）">
+      <div class="safe">
+        <div class="status">
+          <div>9:41</div>
+          <div>5G · 100%</div>
+        </div>
+
+        <div class="feed">
+          <div class="top">
+            <div class="hello">
+              <strong>小彤，上午好</strong>
+              <span>5月5日周二 · 综合洞察已聚合八字 / 星座 / 测评</span>
+              <div class="pull-hint">交互：下拉刷新可同步万年历当日运势 · PRD § 主页</div>
+            </div>
+            <div class="avatar" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M20 21a8 8 0 0 0-16 0"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="cardhead">
+                <strong>今日运势 · 万年历聚合</strong>
+                <div class="badge">Dashboard</div>
+              </div>
+              <div class="score-row">
+                <div class="score-ring" aria-hidden="true">78</div>
+                <div class="luck-grid">
+                  <div class="luck">
+                    <b>幸运色</b>
+                    <span class="swatch"><span class="sw" style="background:#6c7cff"></span>雾蓝</span>
+                  </div>
+                  <div class="luck">
+                    <b>幸运方位</b>
+                   东南
+                  </div>
+                  <div class="luck">
+                    <b>幸运数字</b>
+                    3 · 8
+                  </div>
+                  <div class="luck">
+                    <b>综合解读</b>
+                    宜静心梳理
+                  </div>
+                </div>
+              </div>
+              <div class="list-dos">
+                <div><span class="ok">宜 ·</span> 与朋友做一次深度对话、整理桌面与日程</div>
+                <div><span class="no">忌 ·</span> 冲动签约、熬夜赶工</div>
+              </div>
+              <details class="icard">
+                <summary>展开 · 查看当日细则与节气备注</summary>
+                <div class="body">
+                  今日水木相生，利于学习与沟通；金星相位平缓，避免把细节苛求加到亲密关系上。
+                  卡片默认可摘要展示，全文置于折叠区内（PRD：可折叠摘要 + 展开全文）。
+                </div>
+              </details>
+            </div>
+
+            <div class="card">
+              <div class="cardhead">
+                <strong>星象解读</strong>
+                <div class="badge">日 · 月 · 升</div>
+              </div>
+              <div class="seg-tabs" aria-hidden="true">
+                <div class="seg on">太阳双子</div>
+                <div class="seg">月亮天蝎</div>
+                <div class="seg">上升处女</div>
+              </div>
+              <div class="meters">
+                <div class="meter">
+                  <label>情绪</label>
+                  <div class="bar"><div class="fill good" style="width: 74%"></div></div>
+                </div>
+                <div class="meter">
+                  <label>交流</label>
+                  <div class="bar"><div class="fill" style="width: 63%"></div></div>
+                </div>
+                <div class="meter">
+                  <label>行动力</label>
+                  <div class="bar"><div class="fill warn" style="width: 48%"></div></div>
+                </div>
+              </div>
+              <details class="icard">
+                <summary>展开 · 本命分层解读摘要</summary>
+                <div class="body">
+                  太阳双子带来敏捷表达与好奇心；月亮天蝎需要真实的情绪联结；上升处女偏好结构化推进。
+                  可横向滑动切换三段解读以减少纵向滚动（此处用 Chip 示意）。
+                </div>
+              </details>
+            </div>
+
+            <div class="card">
+              <div class="cardhead">
+                <strong>最新心理测评</strong>
+                <div class="badge">BFI-10</div>
+              </div>
+              <div class="assess-row">
+                <p>
+                  开放性偏高、尽责性稳健：适合你「先小规模试错再扩散」的职业探索路径。<br />
+                  右侧入口跳转测评 Tab（PRD：箭头进入报告详情）。
+                </p>
+                <div class="chev" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <details class="icard">
+                <summary>若无测评记录 · 空状态（示意）</summary>
+                <div class="body">
+                  展示插画 +「去测评」按钮跳转 Tab④；此处为有数据时的摘要样式。
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="fab" id="fab">
+        点我试试<br />AI 综合解读
+      </button>
+
+      <div class="sheet-layer" id="sheetLayer" aria-hidden="true">
+        <div class="sheet-dim" id="sheetDim"></div>
+        <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+          <div class="sheet-head">
+            <h3 id="sheetTitle">AI 综合解读</h3>
+            <button type="button" class="sheet-close" id="sheetClose" aria-label="关闭">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="chat">
+            <div class="bubble">
+              <div class="ai-av">AI</div>
+              <div class="text">
+                <span class="typing">正在解析中</span>
+                <span class="dot3" aria-hidden="true"><span></span><span></span><span></span></span>
+              </div>
+            </div>
+            <div class="bubble">
+              <div class="ai-av">AI</div>
+              <div class="text">
+                我已读取你的八字木旺、双子太阳与最近一次 BFI 结果：今日优先「一对一澄清」而非群发协作；傍晚留出 15
+                分钟复盘即可，无需新开长线任务。
+              </div>
+            </div>
+          </div>
+          <div class="sheet-input">
+            <input type="text" placeholder="输入追问…（原型占位）" readonly />
+            <button type="button" class="send">发送</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-layer" id="dialogLayer" aria-hidden="true">
+        <div class="dialog" role="alertdialog" aria-labelledby="dlgTitle">
+          <h4 id="dlgTitle">是否退出当前对话？</h4>
+          <p>关闭后将清空本轮会话界面；再次点击侧边助手可重新开始。</p>
+          <div class="dialog-actions">
+            <button type="button" class="btn-ghost" id="dlgStay">继续对话</button>
+            <button type="button" class="btn-danger" id="dlgLeave">退出</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav" aria-hidden="true">
+        <div class="tab active">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21V10.5Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+            <path d="M9 22v-7a3 3 0 0 1 6 0v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          主页
+          <div class="dot"></div>
+        </div>
+        <div class="tab">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+          </svg>
+          八字
+          <div class="dot"></div>
+        </div>
+        <div class="tab">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2" />
+            <path d="M12 3a7 7 0 0 0 0 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          星座
+          <div class="dot"></div>
+        </div>
+        <div class="tab">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M7 4h10a2 2 0 0 1 2 2v14l-7-3-7 3V6a2 2 0 0 1 2-2Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+          </svg>
+          测评
+          <div class="dot"></div>
+        </div>
+        <div class="tab">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M20 21a8 8 0 0 0-16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path d="M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2" />
+          </svg>
+          我的
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="proto-note">原型说明：点击紫色悬浮按钮打开 AI 底部弹层；点遮罩或 ✕ 出现二次确认对话框。</p>
+
+    <script>
+      (function () {
+        var phone = document.getElementById("phone");
+        var fab = document.getElementById("fab");
+        var sheetClose = document.getElementById("sheetClose");
+        var sheetDim = document.getElementById("sheetDim");
+        var dlgStay = document.getElementById("dlgStay");
+        var dlgLeave = document.getElementById("dlgLeave");
+
+        function openSheet() {
+          phone.classList.add("ai-open");
+        }
+
+        function requestClose() {
+          phone.classList.add("dialog-open");
+        }
+
+        function dismissDialog() {
+          phone.classList.remove("dialog-open");
+        }
+
+        function closeAll() {
+          phone.classList.remove("dialog-open", "ai-open");
+        }
+
+        fab.addEventListener("click", openSheet);
+        sheetClose.addEventListener("click", requestClose);
+        sheetDim.addEventListener("click", requestClose);
+        dlgStay.addEventListener("click", dismissDialog);
+        dlgLeave.addEventListener("click", closeAll);
+      })();
+    </script>
+  </body>
+</html>
+</template>
+</section>
+
+<section class="sec" id="sec-bazi_detail">
+  <div class="sec-head">
+    <div>
+      <h2>生辰八字</h2>
+      <div class="sub">源文件：<code>group/insightself_mockups/bazi_detail.html</code></div>
+    </div>
+    <div class="sec-actions">
+      <button class="btn" data-open="bazi_detail">新窗口打开</button>
+      <button class="btn ghost" data-reload="bazi_detail">重载预览</button>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe class="frame" title="生辰八字" data-frame="bazi_detail"></iframe>
+  </div>
+  <template id="tpl-bazi_detail"><!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 生辰八字详情</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --card: rgba(255, 255, 255, 0.78);
+        --stroke: rgba(20, 22, 33, 0.08);
+        --shadow: 0 16px 50px rgba(18, 19, 26, 0.12);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+        --ink: rgba(18, 19, 26, 0.06);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+          Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        color: var(--text);
+        background: radial-gradient(
+            1000px 680px at 30% 5%,
+            rgba(91, 103, 255, 0.18),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 720px at 85% 35%,
+            rgba(53, 182, 255, 0.16),
+            transparent 58%
+          ),
+          linear-gradient(160deg, var(--bg0), var(--bg1));
+      }
+
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .safe {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 18px 18px 0;
+      }
+
+      .feed {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding-bottom: 12px;
+      }
+
+      .status {
+        flex-shrink: 0;
+        height: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+
+      .appbar {
+        flex-shrink: 0;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 8px 8px;
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .back {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.65);
+        display: grid;
+        place-items: center;
+      }
+
+      .titlewrap {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .title {
+        font-weight: 800;
+        font-size: 18px;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        opacity: 0.75;
+      }
+
+      .quote-card {
+        flex-shrink: 0;
+        margin-top: 4px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(91, 103, 255, 0.22);
+        background: linear-gradient(135deg, rgba(91, 103, 255, 0.1), rgba(53, 182, 255, 0.08));
+      }
+
+      .quote-card strong {
+        display: block;
+        font-size: 15px;
+        letter-spacing: -0.02em;
+        margin-bottom: 6px;
+      }
+
+      .quote-card p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.78);
+      }
+
+      .banner-warn {
+        flex-shrink: 0;
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 176, 32, 0.35);
+        background: rgba(255, 176, 32, 0.12);
+        font-size: 11px;
+        line-height: 1.45;
+        color: rgba(18, 19, 26, 0.82);
+      }
+
+      .banner-warn a {
+        color: #2f3bff;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .tabs {
+        flex-shrink: 0;
+        margin-top: 8px;
+        display: flex;
+        gap: 10px;
+        padding: 6px 8px;
+      }
+
+      .tab {
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.65);
+        font-size: 12px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.65);
+      }
+
+      .tab.active {
+        border-color: rgba(91, 103, 255, 0.35);
+        background: rgba(91, 103, 255, 0.12);
+        color: #2f3bff;
+      }
+
+      .card {
+        margin-top: 12px;
+        border: 1px solid var(--stroke);
+        background: var(--card);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 14px;
+      }
+
+      .hero {
+        border-radius: 18px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: radial-gradient(
+            120px 80px at 35% 35%,
+            rgba(91, 103, 255, 0.32),
+            transparent 66%
+          ),
+          radial-gradient(
+            140px 90px at 70% 70%,
+            rgba(53, 182, 255, 0.28),
+            transparent 70%
+          ),
+          rgba(255, 255, 255, 0.55);
+        padding: 14px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ink {
+        position: absolute;
+        inset: -40px -20px auto auto;
+        width: 220px;
+        height: 140px;
+        background: radial-gradient(circle at 30% 30%, var(--ink), transparent 60%),
+          radial-gradient(circle at 70% 60%, var(--ink), transparent 62%);
+        transform: rotate(-12deg);
+        pointer-events: none;
+      }
+
+      .herohead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .herohead strong {
+        font-size: 13px;
+        letter-spacing: -0.01em;
+      }
+
+      .pill {
+        font-size: 11px;
+        font-weight: 800;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(18, 19, 26, 0.06);
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        color: rgba(18, 19, 26, 0.7);
+      }
+
+      .hint {
+        margin-top: 8px;
+        font-size: 10px;
+        color: rgba(18, 19, 26, 0.45);
+      }
+
+      .radar {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .legend {
+        display: grid;
+        gap: 8px;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.78);
+        font-weight: 700;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .pct {
+        color: rgba(18, 19, 26, 0.55);
+        font-weight: 800;
+        font-size: 11px;
+      }
+
+      .section {
+        margin-top: 12px;
+      }
+
+      .sectionhead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .sectionhead strong {
+        font-size: 13px;
+        letter-spacing: -0.01em;
+      }
+
+      .cycle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .cycle-node {
+        flex: 1;
+        text-align: center;
+        font-size: 10px;
+        font-weight: 800;
+        padding: 8px 4px;
+        border-radius: 12px;
+        border: 1px dashed rgba(18, 19, 26, 0.15);
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .cycle-arrow {
+        font-size: 12px;
+        opacity: 0.35;
+      }
+
+      .shishen {
+        margin-top: 10px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .sh-row {
+        display: grid;
+        grid-template-columns: 52px 1fr 34px;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .sh-row label {
+        font-size: 11px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.72);
+      }
+
+      .sh-bar {
+        height: 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(18, 19, 26, 0.05);
+        overflow: hidden;
+      }
+
+      .sh-fill {
+        height: 100%;
+        border-radius: 999px;
+      }
+
+      .sh-row .pct {
+        text-align: right;
+      }
+
+      details.bzi {
+        margin-top: 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.55);
+        padding: 0 12px;
+      }
+
+      details.bzi > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 10px 0;
+        font-size: 12px;
+        font-weight: 800;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      details.bzi > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      details.bzi > summary::after {
+        content: "▼";
+        font-size: 9px;
+        opacity: 0.45;
+      }
+
+      details.bzi[open] > summary::after {
+        content: "▲";
+      }
+
+      details.bzi .body {
+        padding: 0 0 12px;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.75);
+      }
+
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.76);
+      }
+
+      .stack {
+        margin-top: 10px;
+        height: 14px;
+        border-radius: 999px;
+        overflow: hidden;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(18, 19, 26, 0.05);
+        display: flex;
+      }
+
+      .seg {
+        height: 100%;
+      }
+
+      .tips {
+        margin-top: 10px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .tip {
+        padding: 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.7);
+        display: grid;
+        gap: 4px;
+      }
+
+      .tip strong {
+        font-size: 12px;
+      }
+
+      .tip span {
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.7);
+        line-height: 1.45;
+      }
+
+      .nav {
+        flex-shrink: 0;
+        height: 84px;
+        padding: 10px 14px 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(247, 247, 255, 0.1),
+          rgba(247, 247, 255, 0.78) 22%,
+          rgba(247, 247, 255, 0.92)
+        );
+        border-top: 1px solid rgba(18, 19, 26, 0.08);
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
+        align-items: end;
+      }
+
+      .nav .tabnav {
+        display: grid;
+        place-items: center;
+        gap: 6px;
+        font-size: 10px;
+        color: rgba(18, 19, 26, 0.55);
+        font-weight: 800;
+      }
+
+      .nav .tabnav.active {
+        color: rgba(18, 19, 26, 0.9);
+      }
+
+      .nav .tabnav .dot2 {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: transparent;
+      }
+
+      .nav .tabnav.active .dot2 {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+
+      .proto-foot {
+        text-align: center;
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.45);
+        padding: 8px 0 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone" role="img" aria-label="InsightSelf 生辰八字详情原型（含 PRD 交互标注）">
+      <div class="safe">
+        <div class="status">
+          <div>9:41</div>
+          <div>5G · 100%</div>
+        </div>
+
+        <div class="appbar">
+          <div class="left">
+            <div class="back" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M15 18l-6-6 6-6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="titlewrap">
+              <div class="title">生辰八字</div>
+              <div class="subtitle">五行 · 大运 · 建议</div>
+            </div>
+          </div>
+          <div class="back" aria-hidden="true">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+              <path d="M12 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+              <path d="M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="quote-card">
+          <strong>天生的「甲木」生长者</strong>
+          <p>根系稳、枝干直，擅长在变化里寻找方向；需注意过刚易折，宜以节律与边界收束扩张。</p>
+        </div>
+
+        <div class="banner-warn">
+          您尚未填写出生时辰，八字排盘与大运流年<strong>仅供参考</strong>。
+          <a href="#">去个人中心补充</a>
+        </div>
+
+        <div class="tabs" aria-hidden="true">
+          <div class="tab">概览</div>
+          <div class="tab active">五行</div>
+          <div class="tab">建议</div>
+        </div>
+
+        <div class="feed">
+          <div class="card">
+            <div class="hero">
+              <div class="ink"></div>
+              <div class="herohead">
+                <strong>五行能量雷达</strong>
+                <div class="pill">点按顶点 · Tooltip</div>
+              </div>
+              <div class="hint">交互说明：点击雷达顶点显示精确百分比；相生相克链如下图（点击五行可看浮层说明）。</div>
+
+              <div class="radar">
+                <div aria-hidden="true">
+                  <svg width="156" height="156" viewBox="0 0 156 156" fill="none">
+                    <circle cx="78" cy="78" r="72" stroke="rgba(18,19,26,0.10)" stroke-width="2" />
+                    <circle cx="78" cy="78" r="54" stroke="rgba(18,19,26,0.09)" stroke-width="2" />
+                    <circle cx="78" cy="78" r="36" stroke="rgba(18,19,26,0.08)" stroke-width="2" />
+                    <circle cx="78" cy="78" r="18" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path d="M78 6L78 150" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path d="M146.47 55.75L9.53 100.25" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path d="M120.32 136.25L35.68 19.75" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path d="M35.68 136.25L120.32 19.75" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path d="M9.53 55.75L146.47 100.25" stroke="rgba(18,19,26,0.07)" stroke-width="2" />
+                    <path
+                      d="M78 29L111.08 67.25L89.75 107.24L55.67 125.98L49.78 63.31Z"
+                      fill="rgba(91,103,255,0.16)"
+                      stroke="rgba(91,103,255,0.55)"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                    <circle cx="78" cy="29" r="3.5" fill="rgba(91,103,255,0.85)" />
+                    <circle cx="111.08" cy="67.25" r="3.5" fill="rgba(31,191,115,0.85)" />
+                    <circle cx="89.75" cy="107.24" r="3.5" fill="rgba(255,176,32,0.85)" />
+                    <circle cx="55.67" cy="125.98" r="3.5" fill="rgba(68,74,92,0.85)" />
+                    <circle cx="49.78" cy="63.31" r="3.5" fill="rgba(53,182,255,0.85)" />
+                    <text x="78" y="18" text-anchor="middle" font-size="10" fill="rgba(18,19,26,0.55)" font-weight="700">
+                      木
+                    </text>
+                    <text x="135.8" y="57.5" text-anchor="middle" font-size="10" fill="rgba(18,19,26,0.55)" font-weight="700">
+                      火
+                    </text>
+                    <text x="114.2" y="147" text-anchor="middle" font-size="10" fill="rgba(18,19,26,0.55)" font-weight="700">
+                      土
+                    </text>
+                    <text x="41.8" y="147" text-anchor="middle" font-size="10" fill="rgba(18,19,26,0.55)" font-weight="700">
+                      金
+                    </text>
+                    <text x="20.2" y="57.5" text-anchor="middle" font-size="10" fill="rgba(18,19,26,0.55)" font-weight="700">
+                      水
+                    </text>
+                  </svg>
+                </div>
+
+                <div class="legend" aria-hidden="true">
+                  <div class="item">
+                    <div class="row">
+                      <span class="dot" style="background: rgba(91,103,255,0.85)"></span>
+                      木
+                    </div>
+                    <div class="pct">34%</div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <span class="dot" style="background: rgba(31,191,115,0.85)"></span>
+                      火
+                    </div>
+                    <div class="pct">18%</div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <span class="dot" style="background: rgba(255,176,32,0.85)"></span>
+                      土
+                    </div>
+                    <div class="pct">20%</div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <span class="dot" style="background: rgba(68,74,92,0.85)"></span>
+                      金
+                    </div>
+                    <div class="pct">12%</div>
+                  </div>
+                  <div class="item">
+                    <div class="row">
+                      <span class="dot" style="background: rgba(53,182,255,0.85)"></span>
+                      水
+                    </div>
+                    <div class="pct">16%</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section">
+                <div class="sectionhead">
+                  <strong>相生相克（示意）</strong>
+                  <div class="pill">可点开</div>
+                </div>
+                <div class="cycle" aria-hidden="true">
+                  <div class="cycle-node">水<br />润下</div>
+                  <span class="cycle-arrow">→</span>
+                  <div class="cycle-node">木<br />生发</div>
+                  <span class="cycle-arrow">→</span>
+                  <div class="cycle-node">火<br />炎上</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="sectionhead">
+                <strong>日主 · 喜用</strong>
+                <div class="pill">甲木</div>
+              </div>
+              <div class="chips" aria-hidden="true">
+                <div class="chip">喜用：金水</div>
+                <div class="chip">幸运色：银灰 ·  Navy</div>
+                <div class="chip">幸运方位：西北</div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="sectionhead">
+                <strong>十神占比（柱形）</strong>
+                <div class="pill">点击柱子</div>
+              </div>
+              <div class="shishen">
+                <div class="sh-row">
+                  <label>比肩</label>
+                  <div class="sh-bar"><div class="sh-fill" style="width: 28%; background: rgba(91,103,255,0.65)"></div></div>
+                  <div class="pct">28%</div>
+                </div>
+                <div class="sh-row">
+                  <label>食神</label>
+                  <div class="sh-bar"><div class="sh-fill" style="width: 22%; background: rgba(31,191,115,0.55)"></div></div>
+                  <div class="pct">22%</div>
+                </div>
+                <div class="sh-row">
+                  <label>偏财</label>
+                  <div class="sh-bar"><div class="sh-fill" style="width: 18%; background: rgba(255,176,32,0.55)"></div></div>
+                  <div class="pct">18%</div>
+                </div>
+                <div class="sh-row">
+                  <label>七杀</label>
+                  <div class="sh-bar"><div class="sh-fill" style="width: 16%; background: rgba(230,90,90,0.45)"></div></div>
+                  <div class="pct">16%</div>
+                </div>
+                <div class="sh-row">
+                  <label>正印</label>
+                  <div class="sh-bar"><div class="sh-fill" style="width: 16%; background: rgba(53,182,255,0.55)"></div></div>
+                  <div class="pct">16%</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <div class="sectionhead">
+                <strong>能量结构</strong>
+                <div class="pill">叠加条</div>
+              </div>
+              <div class="stack" aria-hidden="true">
+                <div class="seg" style="width: 34%; background: rgba(91,103,255,0.72)"></div>
+                <div class="seg" style="width: 18%; background: rgba(31,191,115,0.62)"></div>
+                <div class="seg" style="width: 20%; background: rgba(255,176,32,0.62)"></div>
+                <div class="seg" style="width: 12%; background: rgba(68,74,92,0.55)"></div>
+                <div class="seg" style="width: 16%; background: rgba(53,182,255,0.62)"></div>
+              </div>
+            </div>
+
+            <details class="bzi">
+              <summary>适合的行业与原因</summary>
+              <div class="body">
+                咨询、教研、创意策划等「结构化输出 + 迭代反馈」场景更契合当前比劫与食伤组合；避免长期处于无限责任制且无闭环回报的岗位。
+              </div>
+            </details>
+
+            <details class="bzi">
+              <summary>契合伴侣特质（示意）</summary>
+              <div class="body">
+                情绪颗粒度细、愿意书面复盘的对象更易与你形成互补；需规避习惯性冷战或含糊承诺型相处模式。
+              </div>
+            </details>
+
+            <details class="bzi">
+              <summary>大运 · 流年（分段折叠）</summary>
+              <div class="body">
+                当前大运偏重「资源整合」，流年逢冲宜放缓大额决策；界面可用年份 Segmented / Picker 切换（PRD）。
+              </div>
+            </details>
+
+            <div class="section">
+              <div class="sectionhead">
+                <strong>近期可执行建议</strong>
+                <div class="pill">落地</div>
+              </div>
+              <div class="tips" aria-hidden="true">
+                <div class="tip">
+                  <strong>用「金」节律聚焦</strong>
+                  <span>今天只选一个可衡量的小目标，番茄钟 25 分钟，先完成最小闭环。</span>
+                </div>
+                <div class="tip">
+                  <strong>用水复盘</strong>
+                  <span>三句话日记：今日耗能点？赋能点？明日微调什么？</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="proto-foot">下拉可与服务端同步重新生成评语 · 本子模块对应 Tab② PRD</p>
+        </div>
+      </div>
+
+      <div class="nav" aria-hidden="true">
+        <div class="tabnav">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21V10.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9 22v-7a3 3 0 0 1 6 0v7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          主页
+          <div class="dot2"></div>
+        </div>
+        <div class="tabnav active">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          八字
+          <div class="dot2"></div>
+        </div>
+        <div class="tabnav">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 3a7 7 0 0 0 0 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          星座
+          <div class="dot2"></div>
+        </div>
+        <div class="tabnav">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M7 4h10a2 2 0 0 1 2 2v14l-7-3-7 3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          测评
+          <div class="dot2"></div>
+        </div>
+        <div class="tabnav">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M20 21a8 8 0 0 0-16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          我的
+          <div class="dot2"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+</template>
+</section>
+
+<section class="sec" id="sec-zodiac_detail">
+  <div class="sec-head">
+    <div>
+      <h2>星座解读</h2>
+      <div class="sub">源文件：<code>group/insightself_mockups/zodiac_detail.html</code></div>
+    </div>
+    <div class="sec-actions">
+      <button class="btn" data-open="zodiac_detail">新窗口打开</button>
+      <button class="btn ghost" data-reload="zodiac_detail">重载预览</button>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe class="frame" title="星座解读" data-frame="zodiac_detail"></iframe>
+  </div>
+  <template id="tpl-zodiac_detail"><!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 星座解读</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --stroke: rgba(20, 22, 33, 0.08);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, "PingFang SC", sans-serif;
+        background: linear-gradient(160deg, var(--bg0), var(--bg1));
+        color: var(--text);
+      }
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      .safe {
+        flex: 1;
+        min-height: 0;
+        padding: 18px 18px 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .feed {
+        flex: 1;
+        overflow-y: auto;
+        padding-bottom: 12px;
+      }
+      .status {
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+      .title {
+        margin-top: 12px;
+        font-weight: 800;
+        font-size: 18px;
+      }
+      .hero {
+        margin-top: 10px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(91, 103, 255, 0.22);
+        background: linear-gradient(135deg, rgba(91, 103, 255, 0.12), rgba(53, 182, 255, 0.08));
+      }
+      .hero .mix {
+        font-size: 13px;
+        font-weight: 800;
+        color: #2f3bff;
+      }
+      .hero h3 {
+        margin: 8px 0 6px;
+        font-size: 17px;
+        letter-spacing: -0.02em;
+      }
+      .hero p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.78);
+      }
+      .cal {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .cal button.fake {
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+        background: rgba(255, 255, 255, 0.85);
+        font-weight: 800;
+        font-size: 11px;
+      }
+      .card {
+        margin-top: 12px;
+        border: 1px solid var(--stroke);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(14px);
+        padding: 14px;
+      }
+      .card h4 {
+        margin: 0 0 10px;
+        font-size: 13px;
+      }
+      .meter {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .meter:last-child {
+        margin-bottom: 0;
+      }
+      .meter span {
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(18, 19, 26, 0.06);
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        overflow: hidden;
+      }
+      .bar > i {
+        display: block;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      details {
+        margin-top: 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.6);
+        padding: 0 12px;
+      }
+      details > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 10px 0;
+        font-size: 12px;
+        font-weight: 800;
+        display: flex;
+        justify-content: space-between;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+      details > summary::after {
+        content: "▼";
+        font-size: 9px;
+        opacity: 0.45;
+      }
+      details[open] > summary::after {
+        content: "▲";
+      }
+      details .body {
+        padding: 0 0 12px;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.76);
+      }
+      .hint {
+        font-size: 10px;
+        color: rgba(18, 19, 26, 0.45);
+        margin-top: 8px;
+      }
+      .nav {
+        flex-shrink: 0;
+        height: 84px;
+        padding: 10px 14px 22px;
+        border-top: 1px solid rgba(18, 19, 26, 0.08);
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        font-size: 10px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.55);
+        align-items: end;
+        background: linear-gradient(180deg, transparent, rgba(247, 247, 255, 0.92));
+      }
+      .nav .t {
+        display: grid;
+        place-items: center;
+        gap: 6px;
+      }
+      .nav .t.on {
+        color: rgba(18, 19, 26, 0.92);
+      }
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: transparent;
+      }
+      .nav .t.on .dot {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      .ico {
+        width: 18px;
+        height: 18px;
+        opacity: 0.72;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="safe">
+        <div class="status"><span>9:41</span><span>5G · 100%</span></div>
+        <div class="feed">
+          <div class="title">星座解读</div>
+          <div class="hero">
+            <div class="mix">日狮子 · 月水瓶 · 升双鱼</div>
+            <h3>魅力外显的理想主义者</h3>
+            <p>
+              主角光环在外，疏离思辨在内：你用戏剧化的真诚包裹对世界规则的嘲讽式洞察；上升双鱼为你涂上温柔的滤镜，让别人更愿意靠近。
+            </p>
+            <div class="cal">
+              <span>动态看板 · 基于当日相位（可切换日期）</span>
+              <button type="button" class="fake">📅</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>今日动能 · 情绪 / 交流 / 行动力</h4>
+            <div class="meter">
+              <span>情绪</span>
+              <div class="bar"><i style="width: 72%"></i></div>
+            </div>
+            <div class="meter">
+              <span>交流</span>
+              <div class="bar"><i style="width: 58%; background: linear-gradient(135deg, #1fbf73, #59d98f)"></i></div>
+            </div>
+            <div class="meter">
+              <span>行动</span>
+              <div class="bar"><i style="width: 44%; background: linear-gradient(135deg, #ffb020, #ffcf6a)"></i></div>
+            </div>
+            <p class="hint">下拉刷新拉取当日相位；失败时 Toast「显示缓存」—— PRD § 星座模块。</p>
+          </div>
+
+          <div class="card">
+            <h4>本命结构（太阳 · 月亮 · 上升）</h4>
+            <p style="margin: 0 0 8px; font-size: 12px; line-height: 1.55; color: rgba(18,19,26,0.78)">
+              太阳狮子需要被看见的贡献感；月亮水瓶在亲密里要智性诚实；上升双鱼适宜用意象与隐喻沟通。横滑分段可拆页（示意见折叠）。
+            </p>
+            <details>
+              <summary>太阳狮子 · 展开</summary>
+              <div class="body">核心自信来自「创作与引领」；注意把聚光灯分享给合作者，减少无意中的压制感。</div>
+            </details>
+            <details>
+              <summary>月亮水瓶 · 展开</summary>
+              <div class="body">情绪安全来自空间与议题感；伴侣需接受你暂时的抽离并非拒绝。</div>
+            </details>
+            <details>
+              <summary>上升双鱼 · 展开</summary>
+              <div class="body">外在气质柔软有包容力；边界感需刻意练习，避免过度吸收他人情绪。</div>
+            </details>
+          </div>
+
+          <div class="card">
+            <h4>分层建议（二级匹配模型 · 折叠面板）</h4>
+            <details open>
+              <summary>沟通策略</summary>
+              <div class="body">重要对话先书面列 3 点事实，再见面补情绪；避开公众场合即时对质。</div>
+            </details>
+            <details>
+              <summary>风险提示</summary>
+              <div class="body">水逆前后易误读语气信息；大额承诺延 48h 再签。</div>
+            </details>
+            <details>
+              <summary>合作方式</summary>
+              <div class="body">你是「愿景 + 人设」担当；搭档适合出任流程与风控角色。</div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <div class="t">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21V10.5Z" stroke="currentColor" stroke-width="2"/><path d="M9 22v-7a3 3 0 0 1 6 0v7" stroke="currentColor" stroke-width="2"/></svg>
+          主页
+          <span class="dot"></span>
+        </div>
+        <div class="t">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" stroke="currentColor" stroke-width="2"/></svg>
+          八字
+          <span class="dot"></span>
+        </div>
+        <div class="t on">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/></svg>
+          星座
+          <span class="dot"></span>
+        </div>
+        <div class="t">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M7 4h10a2 2 0 0 1 2 2v14l-7-3-7 3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/></svg>
+          测评
+          <span class="dot"></span>
+        </div>
+        <div class="t">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M20 21a8 8 0 0 0-16 0" stroke="currentColor" stroke-width="2"/><path d="M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/></svg>
+          我的
+          <span class="dot"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+</template>
+</section>
+
+<section class="sec" id="sec-assessment_list">
+  <div class="sec-head">
+    <div>
+      <h2>测评列表</h2>
+      <div class="sub">源文件：<code>group/insightself_mockups/assessment_list.html</code></div>
+    </div>
+    <div class="sec-actions">
+      <button class="btn" data-open="assessment_list">新窗口打开</button>
+      <button class="btn ghost" data-reload="assessment_list">重载预览</button>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe class="frame" title="测评列表" data-frame="assessment_list"></iframe>
+  </div>
+  <template id="tpl-assessment_list"><!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 信息测评</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --stroke: rgba(20, 22, 33, 0.08);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, "PingFang SC", sans-serif;
+        background: linear-gradient(160deg, var(--bg0), var(--bg1));
+        color: var(--text);
+      }
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .safe {
+        flex: 1;
+        min-height: 0;
+        padding: 18px 18px 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .feed {
+        flex: 1;
+        overflow-y: auto;
+        padding-bottom: 12px;
+      }
+      .status {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+      h1 {
+        margin: 14px 8px 4px;
+        font-size: 18px;
+      }
+      .sub {
+        margin: 0 8px 12px;
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .item {
+        margin-top: 10px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(12px);
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .row h2 {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: -0.02em;
+      }
+      .badge {
+        flex-shrink: 0;
+        font-size: 10px;
+        font-weight: 800;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(91, 103, 255, 0.1);
+        color: #2f3bff;
+        border: 1px solid rgba(91, 103, 255, 0.22);
+      }
+      .badge.done {
+        background: rgba(31, 191, 115, 0.12);
+        color: #14663d;
+        border-color: rgba(31, 191, 115, 0.28);
+      }
+      .badge.run {
+        background: rgba(255, 176, 32, 0.14);
+        color: #8a5a00;
+        border-color: rgba(255, 176, 32, 0.35);
+      }
+      .meta {
+        margin-top: 8px;
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .cta {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+      }
+      .cta span {
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.55);
+      }
+      .cta button {
+        padding: 10px 14px;
+        border-radius: 14px;
+        border: 0;
+        font-weight: 800;
+        font-size: 12px;
+        color: #fff;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      .nav {
+        flex-shrink: 0;
+        height: 84px;
+        padding: 10px 14px 22px;
+        border-top: 1px solid rgba(18, 19, 26, 0.08);
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        font-size: 10px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.55);
+        align-items: end;
+        text-align: center;
+        background: linear-gradient(180deg, transparent, rgba(247, 247, 255, 0.92));
+      }
+      .nav .on {
+        color: rgba(18, 19, 26, 0.92);
+      }
+      .ico {
+        width: 18px;
+        height: 18px;
+        margin: 0 auto 6px;
+        opacity: 0.72;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="safe">
+        <div class="status"><span>9:41</span><span>5G · 100%</span></div>
+        <div class="feed">
+          <h1>心理测评</h1>
+          <p class="sub">
+            点击条目进入二级作答页：顶部进度条、题型支持单选 / 李克特量表；中途返回弹出「保存进度 /
+            放弃」—— PRD § 信息测评模块。
+          </p>
+
+          <div class="item">
+            <div class="row">
+              <h2>大五人格简版（BFI-10）</h2>
+              <span class="badge done">已完成</span>
+            </div>
+            <p class="meta">约 3 分钟 · 上次完成：2026-05-01 · 结论已同步主页卡片。</p>
+            <div class="cta"><span>查看解读报告 →</span><button type="button">查看</button></div>
+          </div>
+
+          <div class="item">
+            <div class="row">
+              <h2>成人依恋（ECR-R 简版）</h2>
+              <span class="badge run">进行中</span>
+            </div>
+            <p class="meta">约 6 分钟 · 已完成 8 / 16 题 · 再次进入接续作答。</p>
+            <div class="cta"><span>进度保留策略示意</span><button type="button">继续</button></div>
+          </div>
+
+          <div class="item">
+            <div class="row">
+              <h2>职业锚（Career Anchors）</h2>
+              <span class="badge">未开始</span>
+            </div>
+            <p class="meta">约 10 分钟 · 梳理职业价值观与优先级。</p>
+            <div class="cta"><span></span><button type="button">开始</button></div>
+          </div>
+
+          <div class="item">
+            <div class="row">
+              <h2>MBTI（16 人格）模拟量表</h2>
+              <span class="badge">未开始</span>
+            </div>
+            <p class="meta">娱乐向结构化问卷 · 非临床诊断。</p>
+            <div class="cta"><span></span><button type="button">开始</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M3 10.5 12 3l9 7.5V21h-15V10.5Z" stroke="currentColor" stroke-width="2"/></svg>
+          主页
+        </div>
+        <div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" stroke="currentColor" stroke-width="2"/></svg>
+          八字
+        </div>
+        <div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/></svg>
+          星座
+        </div>
+        <div class="on">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M7 4h10v16l-7-3-7 3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/></svg>
+          测评
+        </div>
+        <div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/></svg>
+          我的
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+</template>
+</section>
+
+<section class="sec" id="sec-assessment_question">
+  <div class="sec-head">
+    <div>
+      <h2>测评二级页 · 作答</h2>
+      <div class="sub">源文件：<code>group/insightself_mockups/assessment_question.html</code></div>
+    </div>
+    <div class="sec-actions">
+      <button class="btn" data-open="assessment_question">新窗口打开</button>
+      <button class="btn ghost" data-reload="assessment_question">重载预览</button>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe class="frame" title="测评二级页 · 作答" data-frame="assessment_question"></iframe>
+  </div>
+  <template id="tpl-assessment_question"><!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 测评作答（二级页）</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --stroke: rgba(20, 22, 33, 0.08);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, "PingFang SC", sans-serif;
+        background: linear-gradient(160deg, var(--bg0), var(--bg1));
+        color: var(--text);
+      }
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      .safe {
+        flex: 1;
+        min-height: 0;
+        padding: 18px 18px 18px;
+        display: flex;
+        flex-direction: column;
+      }
+      .status {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+      .appbar {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 8px 6px;
+      }
+      .back {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.75);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+      }
+      .icon {
+        width: 18px;
+        height: 18px;
+        opacity: 0.75;
+      }
+      .titlewrap {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+        min-width: 0;
+      }
+      .title {
+        font-weight: 800;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .sub {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .progress {
+        margin: 10px 8px 0;
+        height: 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(18, 19, 26, 0.05);
+        overflow: hidden;
+      }
+      .progress > i {
+        display: block;
+        height: 100%;
+        width: 22%;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      .card {
+        margin-top: 14px;
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+      }
+      .qno {
+        font-size: 11px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.55);
+      }
+      h1 {
+        margin: 8px 0 10px;
+        font-size: 16px;
+        letter-spacing: -0.02em;
+      }
+      .scale {
+        margin-top: 10px;
+        display: grid;
+        gap: 10px;
+      }
+      .opt {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 12px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.78);
+        font-size: 13px;
+        font-weight: 700;
+        color: rgba(18, 19, 26, 0.78);
+      }
+      .radio {
+        width: 18px;
+        height: 18px;
+        border-radius: 999px;
+        border: 2px solid rgba(18, 19, 26, 0.18);
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+      }
+      .radio.on {
+        border-color: rgba(91, 103, 255, 0.55);
+      }
+      .radio.on::after {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      .hint {
+        margin-top: 10px;
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.45);
+        line-height: 1.45;
+      }
+      .footer {
+        margin-top: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding-top: 14px;
+      }
+      .btn {
+        height: 48px;
+        border-radius: 16px;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .btn-ghost {
+        border: 1px solid rgba(18, 19, 26, 0.14);
+        background: rgba(255, 255, 255, 0.85);
+        color: rgba(18, 19, 26, 0.78);
+      }
+      .btn-primary {
+        border: 0;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #fff;
+        box-shadow: 0 14px 34px rgba(91, 103, 255, 0.26);
+      }
+      .dlg-layer {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 12, 20, 0.38);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      .phone.d-open .dlg-layer {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .dlg {
+        width: 100%;
+        max-width: 300px;
+        background: #fff;
+        border-radius: 20px;
+        padding: 18px 16px 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        box-shadow: 0 16px 50px rgba(18, 19, 26, 0.12);
+      }
+      .dlg h3 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+      .dlg p {
+        margin: 0 0 16px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .dlg-act {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .dlg-act button {
+        height: 42px;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .b-g {
+        border: 1px solid rgba(18, 19, 26, 0.14);
+        background: #fff;
+      }
+      .b-r {
+        border: 0;
+        background: rgba(230, 90, 90, 0.12);
+        color: #c03535;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone" id="phone" aria-label="测评二级作答页原型（单屏示意：进度条 + 李克特选项 + 返回确认）">
+      <div class="safe">
+        <div class="status"><span>9:41</span><span>5G · 100%</span></div>
+
+        <div class="appbar">
+          <button type="button" class="back" id="btnBack" aria-label="返回">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <div class="titlewrap">
+            <div class="title">大五人格简版（BFI-10）</div>
+            <div class="sub">第 3 / 10 题 · 约 3 分钟</div>
+          </div>
+          <div class="back" aria-hidden="true" title="更多">
+            <svg class="icon" viewBox="0 0 24 24" fill="none">
+              <path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+              <path d="M12 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+              <path d="M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="progress" aria-hidden="true"><i></i></div>
+
+        <div class="card">
+          <div class="qno">题目 3</div>
+          <h1>我通常会在开始前先把事情规划好。</h1>
+          <div class="scale" aria-hidden="true">
+            <div class="opt"><span class="radio"></span>非常不同意</div>
+            <div class="opt"><span class="radio"></span>不同意</div>
+            <div class="opt"><span class="radio on"></span>一般</div>
+            <div class="opt"><span class="radio"></span>同意</div>
+            <div class="opt"><span class="radio"></span>非常同意</div>
+          </div>
+          <p class="hint">
+            交互要求：用户中途返回（系统返回键/左上角）弹出确认：<b>保存进度</b> / <b>放弃本次作答</b>（PRD § 信息测评模块）。
+          </p>
+        </div>
+
+        <div class="footer" aria-hidden="true">
+          <button type="button" class="btn btn-ghost">上一题</button>
+          <button type="button" class="btn btn-primary">下一题</button>
+        </div>
+      </div>
+
+      <div class="dlg-layer" id="dlgLayer" aria-hidden="true">
+        <div class="dlg" role="alertdialog" aria-labelledby="dlgTitle">
+          <h3 id="dlgTitle">退出作答？</h3>
+          <p>你已完成 2 / 10 题。是否保存进度以便下次继续？</p>
+          <div class="dlg-act">
+            <button type="button" class="b-g" id="dlgSave">保存进度</button>
+            <button type="button" class="b-r" id="dlgDrop">放弃</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var phone = document.getElementById("phone");
+        var btnBack = document.getElementById("btnBack");
+        var dlgSave = document.getElementById("dlgSave");
+        var dlgDrop = document.getElementById("dlgDrop");
+
+        btnBack.addEventListener("click", function () {
+          phone.classList.add("d-open");
+        });
+        dlgSave.addEventListener("click", function () {
+          phone.classList.remove("d-open");
+        });
+        dlgDrop.addEventListener("click", function () {
+          phone.classList.remove("d-open");
+        });
+      })();
+    </script>
+  </body>
+</html>
+</template>
+</section>
+
+<section class="sec" id="sec-assessment_result">
+  <div class="sec-head">
+    <div>
+      <h2>测评二级页 · 结果解读</h2>
+      <div class="sub">源文件：<code>group/insightself_mockups/assessment_result.html</code></div>
+    </div>
+    <div class="sec-actions">
+      <button class="btn" data-open="assessment_result">新窗口打开</button>
+      <button class="btn ghost" data-reload="assessment_result">重载预览</button>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe class="frame" title="测评二级页 · 结果解读" data-frame="assessment_result"></iframe>
+  </div>
+  <template id="tpl-assessment_result"><!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 测评结果解读</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --stroke: rgba(20, 22, 33, 0.08);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+        --good: #1fbf73;
+        --warn: #ffb020;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, "PingFang SC", sans-serif;
+        background: linear-gradient(160deg, var(--bg0), var(--bg1));
+        color: var(--text);
+      }
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .safe {
+        flex: 1;
+        min-height: 0;
+        padding: 18px 18px 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .feed {
+        flex: 1;
+        overflow-y: auto;
+        padding-bottom: 14px;
+      }
+      .status {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+      .appbar {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 8px 6px;
+      }
+      .back {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.75);
+        display: grid;
+        place-items: center;
+      }
+      .icon {
+        width: 18px;
+        height: 18px;
+        opacity: 0.75;
+      }
+      .titlewrap {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+        min-width: 0;
+      }
+      .title {
+        font-weight: 800;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .sub {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .hero {
+        margin-top: 10px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(91, 103, 255, 0.22);
+        background: linear-gradient(135deg, rgba(91, 103, 255, 0.12), rgba(53, 182, 255, 0.08));
+      }
+      .hero h1 {
+        margin: 0 0 6px;
+        font-size: 18px;
+        letter-spacing: -0.02em;
+      }
+      .hero p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.78);
+      }
+      .card {
+        margin-top: 12px;
+        padding: 14px;
+        border-radius: 20px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+      }
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 13px;
+      }
+      .trait {
+        display: grid;
+        grid-template-columns: 110px 1fr 34px;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .trait:last-child {
+        margin-bottom: 0;
+      }
+      .trait label {
+        font-size: 11px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.72);
+      }
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(18, 19, 26, 0.05);
+        overflow: hidden;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      .pct {
+        text-align: right;
+        font-size: 11px;
+        font-weight: 900;
+        color: rgba(18, 19, 26, 0.55);
+      }
+      details {
+        margin-top: 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.6);
+        padding: 0 12px;
+      }
+      details > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 10px 0;
+        font-size: 12px;
+        font-weight: 800;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+      details > summary::after {
+        content: "▼";
+        font-size: 9px;
+        opacity: 0.45;
+      }
+      details[open] > summary::after {
+        content: "▲";
+      }
+      details .body {
+        padding: 0 0 12px;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.76);
+      }
+      .share {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .btn {
+        height: 46px;
+        border-radius: 16px;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .btn-ghost {
+        border: 1px solid rgba(18, 19, 26, 0.14);
+        background: rgba(255, 255, 255, 0.85);
+        color: rgba(18, 19, 26, 0.78);
+      }
+      .btn-primary {
+        border: 0;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #fff;
+        box-shadow: 0 14px 34px rgba(91, 103, 255, 0.22);
+      }
+      .hint {
+        margin-top: 10px;
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.45);
+        text-align: center;
+        line-height: 1.45;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone" aria-label="测评结果解读页原型（单屏示意：结果条 + 折叠解释 + 分享/返回）">
+      <div class="safe">
+        <div class="status"><span>9:41</span><span>5G · 100%</span></div>
+
+        <div class="feed">
+          <div class="appbar">
+            <div class="back" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="titlewrap">
+              <div class="title">BFI-10 · 结果解读</div>
+              <div class="sub">已完成 · 2026-05-05</div>
+            </div>
+            <div class="back" aria-hidden="true" title="更多">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+                <path d="M12 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+                <path d="M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="hero">
+            <h1>你的主线：稳定执行 + 适度好奇</h1>
+            <p>
+              这份简版结果用于自我理解与行动建议，不用于临床诊断。主页「最新测评结论」将引用这里的摘要。
+            </p>
+          </div>
+
+          <div class="card">
+            <h2>维度概览（示意）</h2>
+            <div class="trait">
+              <label>开放性</label>
+              <div class="bar"><i style="width: 68%"></i></div>
+              <div class="pct">68</div>
+            </div>
+            <div class="trait">
+              <label>尽责性</label>
+              <div class="bar"><i style="width: 74%; background: linear-gradient(135deg, var(--good), #59d98f)"></i></div>
+              <div class="pct">74</div>
+            </div>
+            <div class="trait">
+              <label>外向性</label>
+              <div class="bar"><i style="width: 42%; background: linear-gradient(135deg, var(--warn), #ffcf6a)"></i></div>
+              <div class="pct">42</div>
+            </div>
+            <div class="trait">
+              <label>宜人性</label>
+              <div class="bar"><i style="width: 61%"></i></div>
+              <div class="pct">61</div>
+            </div>
+            <div class="trait">
+              <label>神经质</label>
+              <div class="bar"><i style="width: 53%; background: linear-gradient(135deg, var(--warn), #ffcf6a)"></i></div>
+              <div class="pct">53</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>分层解读（折叠）</h2>
+            <details open>
+              <summary>你会如何做决策</summary>
+              <div class="body">
+                尽责性偏高意味着你更依赖计划与结构；开放性中高使你愿意试新方法。建议：先做 1 个小实验，再决定是否扩大投入。
+              </div>
+            </details>
+            <details>
+              <summary>压力状态下的信号</summary>
+              <div class="body">
+                神经质中等偏上时，容易对「未完成」敏感。建议：把目标拆成可勾选的最小步骤，并设置固定的收工时间。
+              </div>
+            </details>
+            <details>
+              <summary>三条可执行建议</summary>
+              <div class="body">
+                1) 每天只保留 1 个最重要任务；2) 用 25 分钟番茄钟启动；3) 晚上用 3 句话做复盘，避免反刍。
+              </div>
+            </details>
+          </div>
+
+          <div class="share" aria-hidden="true">
+            <button type="button" class="btn btn-ghost">复制摘要</button>
+            <button type="button" class="btn btn-primary">分享</button>
+          </div>
+
+          <p class="hint">提交成功进入本页；返回列表该项标记已完成并更新时间戳（PRD § 信息测评模块）。</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+</template>
+</section>
+
+<section class="sec" id="sec-profile_center">
+  <div class="sec-head">
+    <div>
+      <h2>个人中心</h2>
+      <div class="sub">源文件：<code>group/insightself_mockups/profile_center.html</code></div>
+    </div>
+    <div class="sec-actions">
+      <button class="btn" data-open="profile_center">新窗口打开</button>
+      <button class="btn ghost" data-reload="profile_center">重载预览</button>
+    </div>
+  </div>
+  <div class="frame-wrap">
+    <iframe class="frame" title="个人中心" data-frame="profile_center"></iframe>
+  </div>
+  <template id="tpl-profile_center"><!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 个人中心</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --stroke: rgba(20, 22, 33, 0.08);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, "PingFang SC", sans-serif;
+        background: linear-gradient(160deg, var(--bg0), var(--bg1));
+        color: var(--text);
+      }
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      .safe {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 18px 18px 12px;
+      }
+      .status {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+      .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+      }
+      .head h1 {
+        margin: 0;
+        font-size: 18px;
+      }
+      .edit {
+        padding: 10px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+        background: rgba(255, 255, 255, 0.85);
+        font-weight: 800;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      .card {
+        margin-top: 14px;
+        border-radius: 20px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(12px);
+        overflow: hidden;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 14px;
+        border-bottom: 1px solid rgba(18, 19, 26, 0.06);
+        font-size: 13px;
+      }
+      .row:last-child {
+        border-bottom: 0;
+      }
+      .row span.k {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .row span.v {
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .phone.editing .view-only {
+        display: none;
+      }
+
+      .edit-only {
+        display: none;
+      }
+
+      .phone.editing .edit-only {
+        display: block;
+      }
+
+      .field {
+        height: 42px;
+        padding: 0 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+        background: rgba(255, 255, 255, 0.92);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 13px;
+        color: rgba(18, 19, 26, 0.75);
+      }
+
+      .field .ph {
+        color: rgba(18, 19, 26, 0.38);
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+
+      .chip {
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+        background: rgba(255, 255, 255, 0.86);
+        font-weight: 800;
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.65);
+      }
+
+      .chip.on {
+        border-color: rgba(91, 103, 255, 0.35);
+        background: rgba(91, 103, 255, 0.12);
+        color: #2f3bff;
+      }
+
+      .actions {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .btn {
+        height: 46px;
+        border-radius: 16px;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+      }
+
+      .btn-ghost {
+        border: 1px solid rgba(18, 19, 26, 0.14);
+        background: rgba(255, 255, 255, 0.85);
+        color: rgba(18, 19, 26, 0.78);
+      }
+
+      .btn-primary {
+        border: 0;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #fff;
+        box-shadow: 0 14px 34px rgba(91, 103, 255, 0.22);
+      }
+      .logout {
+        margin-top: 16px;
+        width: 100%;
+        height: 48px;
+        border-radius: 16px;
+        border: 1px solid rgba(230, 90, 90, 0.35);
+        background: rgba(230, 90, 90, 0.08);
+        color: #b83232;
+        font-weight: 800;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .hint {
+        margin-top: 10px;
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.45);
+        text-align: center;
+      }
+      .nav {
+        flex-shrink: 0;
+        height: 84px;
+        padding: 10px 14px 22px;
+        border-top: 1px solid rgba(18, 19, 26, 0.08);
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        font-size: 10px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.55);
+        align-items: end;
+        text-align: center;
+        background: linear-gradient(180deg, transparent, rgba(247, 247, 255, 0.92));
+      }
+      .nav .on {
+        color: rgba(18, 19, 26, 0.92);
+      }
+      .ico {
+        width: 18px;
+        height: 18px;
+        margin: 0 auto 6px;
+        opacity: 0.72;
+      }
+      .dlg-layer {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 12, 20, 0.38);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+        z-index: 10;
+      }
+      .phone.d-open .dlg-layer {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .dlg {
+        width: 100%;
+        max-width: 300px;
+        background: #fff;
+        border-radius: 20px;
+        padding: 18px 16px 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        box-shadow: 0 16px 50px rgba(18, 19, 26, 0.12);
+      }
+      .dlg h3 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+      .dlg p {
+        margin: 0 0 16px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .dlg-act {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .dlg-act button {
+        height: 42px;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .b-g {
+        border: 1px solid rgba(18, 19, 26, 0.14);
+        background: #fff;
+      }
+      .b-r {
+        border: 0;
+        background: rgba(230, 90, 90, 0.12);
+        color: #c03535;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone" id="phone">
+      <div class="safe">
+        <div class="status"><span>9:41</span><span>5G · 100%</span></div>
+        <div class="head">
+          <h1>个人中心</h1>
+          <button type="button" class="edit" id="btnEdit">编辑</button>
+        </div>
+
+        <div class="card view-only" id="viewCard">
+          <div class="row"><span class="k">昵称</span><span class="v">小彤</span></div>
+          <div class="row"><span class="k">性别</span><span class="v">女</span></div>
+          <div class="row"><span class="k">出生日期</span><span class="v">2002-06-01</span></div>
+          <div class="row"><span class="k">星座（自动）</span><span class="v">双子座</span></div>
+          <div class="row"><span class="k">出生时辰</span><span class="v">未填写</span></div>
+          <div class="row"><span class="k">出生地</span><span class="v">上海市 · 黄浦区</span></div>
+          <div class="row"><span class="k">文化偏好</span><span class="v">平衡</span></div>
+          <div class="row"><span class="k">语言</span><span class="v">简体中文</span></div>
+          <div class="row"><span class="k">修改密码</span><span class="v">········</span></div>
+        </div>
+
+        <div class="card edit-only" id="editCard" aria-label="编辑态（字段控件示意）">
+          <div class="row">
+            <span class="k">昵称</span>
+            <div class="field" style="max-width: 210px; width: 210px">
+              <span>小彤</span><span class="ph">0/12</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="k">性别</span>
+            <div class="chips" aria-hidden="true">
+              <span class="chip on">女</span><span class="chip">男</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="k">出生日期</span>
+            <div class="field" style="max-width: 210px; width: 210px">
+              <span>2002-06-01</span><span class="ph">选择器</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="k">星座（自动）</span>
+            <span class="v">双子座</span>
+          </div>
+          <div class="row">
+            <span class="k">出生时辰</span>
+            <div class="field" style="max-width: 210px; width: 210px">
+              <span class="ph">时辰 / 不详</span><span class="ph">选择器</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="k">出生地</span>
+            <div class="field" style="max-width: 210px; width: 210px">
+              <span class="ph">省 · 市 · 区</span><span class="ph">联动</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="k">文化偏好</span>
+            <div class="chips" aria-hidden="true">
+              <span class="chip">偏中式</span><span class="chip">偏西式</span><span class="chip on">平衡</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="k">语言</span>
+            <div class="chips" aria-hidden="true">
+              <span class="chip on">简体中文</span><span class="chip">English</span>
+            </div>
+          </div>
+          <div class="row">
+            <span class="k">修改密码</span>
+            <div class="field" style="max-width: 210px; width: 210px">
+              <span class="ph">原密码 + 新密码</span><span class="ph">校验</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn btn-ghost" id="btnCancel">取消</button>
+            <button type="button" class="btn btn-primary" id="btnSave">保存</button>
+          </div>
+        </div>
+
+        <button type="button" class="logout" id="btnLogout">退出登录</button>
+        <p class="hint">点击退出触发二次确认 · 编辑态沿用登记表单控件 · PRD § 个人中心</p>
+      </div>
+
+      <div class="nav">
+        <div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M3 10.5 12 3l9 7.5V21h-15V10.5Z" stroke="currentColor" stroke-width="2"/></svg>
+          主页
+        </div>
+        <div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7 7 3-7 3-3 7Z" stroke="currentColor" stroke-width="2"/></svg>
+          八字
+        </div>
+        <div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/></svg>
+          星座
+        </div>
+        <div>
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M7 4h10v16l-7-3-7 3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/></svg>
+          测评
+        </div>
+        <div class="on">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M20 21a8 8 0 0 0-16 0M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/></svg>
+          我的
+        </div>
+      </div>
+
+      <div class="dlg-layer" id="dlgLayer">
+        <div class="dlg">
+          <h3>确定退出登录？</h3>
+          <p>本地会话将被清除并返回登录页。</p>
+          <div class="dlg-act">
+            <button type="button" class="b-g" id="dlgCancel">取消</button>
+            <button type="button" class="b-r" id="dlgOk">退出</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var phone = document.getElementById("phone");
+        var btnEdit = document.getElementById("btnEdit");
+        var btnCancel = document.getElementById("btnCancel");
+        var btnSave = document.getElementById("btnSave");
+        document.getElementById("btnLogout").addEventListener("click", function () {
+          phone.classList.add("d-open");
+        });
+        document.getElementById("dlgCancel").addEventListener("click", function () {
+          phone.classList.remove("d-open");
+        });
+        document.getElementById("dlgOk").addEventListener("click", function () {
+          phone.classList.remove("d-open");
+        });
+
+        btnEdit.addEventListener("click", function () {
+          phone.classList.toggle("editing");
+          btnEdit.textContent = phone.classList.contains("editing") ? "完成" : "编辑";
+        });
+        btnCancel.addEventListener("click", function () {
+          phone.classList.remove("editing");
+          btnEdit.textContent = "编辑";
+        });
+        btnSave.addEventListener("click", function () {
+          phone.classList.remove("editing");
+          btnEdit.textContent = "编辑";
+        });
+      })();
+    </script>
+  </body>
+</html>
+</template>
+</section>
+</main>
+  </div>
+
+  <script>
+(function () {
+  function buildBlobUrl(key) {
+    var tpl = document.getElementById('tpl-' + key);
+    if (!tpl) return null;
+    var html = tpl.innerHTML;
+    var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    return URL.createObjectURL(blob);
+  }
+
+  function loadIntoFrame(key) {
+    var frame = document.querySelector('iframe[data-frame="' + key + '"]');
+    if (!frame) return;
+    var url = buildBlobUrl(key);
+    if (!url) return;
+    frame.src = url;
+  }
+
+  var keys = ["InsightSelf_PRD","login_register","onboarding","home_dashboard","bazi_detail","zodiac_detail","assessment_list","assessment_question","assessment_result","profile_center"];
+  keys.forEach(function (k) { loadIntoFrame(k); });
+
+  document.querySelectorAll('[data-reload]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-reload');
+      loadIntoFrame(k);
+    });
+  });
+
+  document.querySelectorAll('[data-open]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-open');
+      var url = buildBlobUrl(k);
+      if (url) window.open(url, '_blank');
+    });
+  });
+
+  var links = Array.from(document.querySelectorAll('.navlink'));
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) {
+        a.style.background = 'var(--panel2)';
+        a.style.borderColor = 'rgba(255,255,255,0.08)';
+      });
+      var a = document.querySelector('.navlink[href="#' + e.target.id + '"]');
+      if (a) {
+        a.style.background = 'rgba(122,162,255,0.12)';
+        a.style.borderColor = 'rgba(122,162,255,0.35)';
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+  document.querySelectorAll('.sec').forEach(function (s) { obs.observe(s); });
+})();
+</script>
+</body>
+</html>

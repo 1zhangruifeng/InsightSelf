@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 星座解读</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --stroke: rgba(20, 22, 33, 0.08);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, "PingFang SC", sans-serif;
+        background: linear-gradient(160deg, var(--bg0), var(--bg1));
+        color: var(--text);
+      }
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      .safe {
+        flex: 1;
+        min-height: 0;
+        padding: 18px 18px 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .feed {
+        flex: 1;
+        overflow-y: auto;
+        padding-bottom: 12px;
+      }
+      .status {
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+      .title {
+        margin-top: 12px;
+        font-weight: 800;
+        font-size: 18px;
+      }
+      .hero {
+        margin-top: 10px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(91, 103, 255, 0.22);
+        background: linear-gradient(135deg, rgba(91, 103, 255, 0.12), rgba(53, 182, 255, 0.08));
+      }
+      .hero .mix {
+        font-size: 13px;
+        font-weight: 800;
+        color: #2f3bff;
+      }
+      .hero h3 {
+        margin: 8px 0 6px;
+        font-size: 17px;
+        letter-spacing: -0.02em;
+      }
+      .hero p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.78);
+      }
+      .cal {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .cal button.fake {
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+        background: rgba(255, 255, 255, 0.85);
+        font-weight: 800;
+        font-size: 11px;
+      }
+      .card {
+        margin-top: 12px;
+        border: 1px solid var(--stroke);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.78);
+        backdrop-filter: blur(14px);
+        padding: 14px;
+      }
+      .card h4 {
+        margin: 0 0 10px;
+        font-size: 13px;
+      }
+      .meter {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .meter:last-child {
+        margin-bottom: 0;
+      }
+      .meter span {
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(18, 19, 26, 0.06);
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        overflow: hidden;
+      }
+      .bar > i {
+        display: block;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      details {
+        margin-top: 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.6);
+        padding: 0 12px;
+      }
+      details > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 10px 0;
+        font-size: 12px;
+        font-weight: 800;
+        display: flex;
+        justify-content: space-between;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+      details > summary::after {
+        content: "▼";
+        font-size: 9px;
+        opacity: 0.45;
+      }
+      details[open] > summary::after {
+        content: "▲";
+      }
+      details .body {
+        padding: 0 0 12px;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.76);
+      }
+      .hint {
+        font-size: 10px;
+        color: rgba(18, 19, 26, 0.45);
+        margin-top: 8px;
+      }
+      .nav {
+        flex-shrink: 0;
+        height: 84px;
+        padding: 10px 14px 22px;
+        border-top: 1px solid rgba(18, 19, 26, 0.08);
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        font-size: 10px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.55);
+        align-items: end;
+        background: linear-gradient(180deg, transparent, rgba(247, 247, 255, 0.92));
+      }
+      .nav .t {
+        display: grid;
+        place-items: center;
+        gap: 6px;
+      }
+      .nav .t.on {
+        color: rgba(18, 19, 26, 0.92);
+      }
+      .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: transparent;
+      }
+      .nav .t.on .dot {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      .ico {
+        width: 18px;
+        height: 18px;
+        opacity: 0.72;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="safe">
+        <div class="status"><span>9:41</span><span>5G · 100%</span></div>
+        <div class="feed">
+          <div class="title">星座解读</div>
+          <div class="hero">
+            <div class="mix">日狮子 · 月水瓶 · 升双鱼</div>
+            <h3>魅力外显的理想主义者</h3>
+            <p>
+              主角光环在外，疏离思辨在内：你用戏剧化的真诚包裹对世界规则的嘲讽式洞察；上升双鱼为你涂上温柔的滤镜，让别人更愿意靠近。
+            </p>
+            <div class="cal">
+              <span>动态看板 · 基于当日相位（可切换日期）</span>
+              <button type="button" class="fake">📅</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>今日动能 · 情绪 / 交流 / 行动力</h4>
+            <div class="meter">
+              <span>情绪</span>
+              <div class="bar"><i style="width: 72%"></i></div>
+            </div>
+            <div class="meter">
+              <span>交流</span>
+              <div class="bar"><i style="width: 58%; background: linear-gradient(135deg, #1fbf73, #59d98f)"></i></div>
+            </div>
+            <div class="meter">
+              <span>行动</span>
+              <div class="bar"><i style="width: 44%; background: linear-gradient(135deg, #ffb020, #ffcf6a)"></i></div>
+            </div>
+            <p class="hint">下拉刷新拉取当日相位；失败时 Toast「显示缓存」—— PRD § 星座模块。</p>
+          </div>
+
+          <div class="card">
+            <h4>本命结构（太阳 · 月亮 · 上升）</h4>
+            <p style="margin: 0 0 8px; font-size: 12px; line-height: 1.55; color: rgba(18,19,26,0.78)">
+              太阳狮子需要被看见的贡献感；月亮水瓶在亲密里要智性诚实；上升双鱼适宜用意象与隐喻沟通。横滑分段可拆页（示意见折叠）。
+            </p>
+            <details>
+              <summary>太阳狮子 · 展开</summary>
+              <div class="body">核心自信来自「创作与引领」；注意把聚光灯分享给合作者，减少无意中的压制感。</div>
+            </details>
+            <details>
+              <summary>月亮水瓶 · 展开</summary>
+              <div class="body">情绪安全来自空间与议题感；伴侣需接受你暂时的抽离并非拒绝。</div>
+            </details>
+            <details>
+              <summary>上升双鱼 · 展开</summary>
+              <div class="body">外在气质柔软有包容力；边界感需刻意练习，避免过度吸收他人情绪。</div>
+            </details>
+          </div>
+
+          <div class="card">
+            <h4>分层建议（二级匹配模型 · 折叠面板）</h4>
+            <details open>
+              <summary>沟通策略</summary>
+              <div class="body">重要对话先书面列 3 点事实，再见面补情绪；避开公众场合即时对质。</div>
+            </details>
+            <details>
+              <summary>风险提示</summary>
+              <div class="body">水逆前后易误读语气信息；大额承诺延 48h 再签。</div>
+            </details>
+            <details>
+              <summary>合作方式</summary>
+              <div class="body">你是「愿景 + 人设」担当；搭档适合出任流程与风控角色。</div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav">
+        <div class="t">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21V10.5Z" stroke="currentColor" stroke-width="2"/><path d="M9 22v-7a3 3 0 0 1 6 0v7" stroke="currentColor" stroke-width="2"/></svg>
+          主页
+          <span class="dot"></span>
+        </div>
+        <div class="t">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" stroke="currentColor" stroke-width="2"/></svg>
+          八字
+          <span class="dot"></span>
+        </div>
+        <div class="t on">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2"/></svg>
+          星座
+          <span class="dot"></span>
+        </div>
+        <div class="t">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M7 4h10a2 2 0 0 1 2 2v14l-7-3-7 3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2"/></svg>
+          测评
+          <span class="dot"></span>
+        </div>
+        <div class="t">
+          <svg class="ico" viewBox="0 0 24 24" fill="none"><path d="M20 21a8 8 0 0 0-16 0" stroke="currentColor" stroke-width="2"/><path d="M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/></svg>
+          我的
+          <span class="dot"></span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 主页 · 更懂自己</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --card: rgba(255, 255, 255, 0.78);
+        --stroke: rgba(20, 22, 33, 0.08);
+        --shadow: 0 16px 50px rgba(18, 19, 26, 0.12);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+        --good: #1fbf73;
+        --warn: #ffb020;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei",
+          sans-serif;
+        color: var(--text);
+        background: radial-gradient(
+            1100px 720px at 25% 0%,
+            rgba(91, 103, 255, 0.22),
+            transparent 62%
+          ),
+          radial-gradient(
+            900px 700px at 85% 30%,
+            rgba(53, 182, 255, 0.18),
+            transparent 58%
+          ),
+          linear-gradient(160deg, var(--bg0), var(--bg1));
+      }
+
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: radial-gradient(
+            1100px 720px at 25% 0%,
+            rgba(91, 103, 255, 0.16),
+            transparent 62%
+          ),
+          radial-gradient(
+            900px 700px at 85% 30%,
+            rgba(53, 182, 255, 0.14),
+            transparent 58%
+          ),
+          linear-gradient(160deg, var(--bg0), var(--bg1));
+      }
+
+      .safe {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 18px 18px 0;
+      }
+
+      .feed {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .status {
+        height: 22px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+
+      .top {
+        margin-top: 14px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      .hello {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .hello strong {
+        font-size: 20px;
+        letter-spacing: -0.02em;
+      }
+
+      .hello span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .pull-hint {
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.45);
+        margin-top: 4px;
+      }
+
+      .avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 16px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.74);
+        display: grid;
+        place-items: center;
+      }
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        opacity: 0.75;
+      }
+
+      .grid {
+        margin-top: 14px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .card {
+        border: 1px solid var(--stroke);
+        background: var(--card);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 14px;
+      }
+
+      .cardhead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .cardhead strong {
+        font-size: 13px;
+        letter-spacing: -0.01em;
+      }
+
+      .badge {
+        font-size: 11px;
+        font-weight: 700;
+        padding: 7px 10px;
+        border-radius: 999px;
+        background: rgba(91, 103, 255, 0.1);
+        color: #2f3bff;
+        border: 1px solid rgba(91, 103, 255, 0.25);
+      }
+
+      .score-row {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .score-ring {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        border: 8px solid rgba(91, 103, 255, 0.15);
+        border-top-color: var(--primary);
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+
+      .luck-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        font-size: 11px;
+      }
+
+      .luck {
+        padding: 8px 10px;
+        border-radius: 12px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.65);
+      }
+
+      .luck b {
+        display: block;
+        font-size: 10px;
+        color: var(--muted);
+        margin-bottom: 2px;
+      }
+
+      .swatch {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .sw {
+        width: 14px;
+        height: 14px;
+        border-radius: 5px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+      }
+
+      .list-dos {
+        margin-top: 10px;
+        display: grid;
+        gap: 6px;
+        font-size: 12px;
+      }
+
+      .list-dos .ok {
+        color: rgba(31, 191, 115, 0.95);
+        font-weight: 700;
+      }
+
+      .list-dos .no {
+        color: rgba(230, 90, 90, 0.9);
+        font-weight: 700;
+      }
+
+      details.icard {
+        margin-top: 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.55);
+        padding: 0 12px;
+      }
+
+      details.icard > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 10px 0;
+        font-size: 12px;
+        font-weight: 700;
+        color: rgba(18, 19, 26, 0.78);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      details.icard > summary::-webkit-details-marker {
+        display: none;
+      }
+
+      details.icard > summary::after {
+        content: "▼";
+        font-size: 9px;
+        opacity: 0.45;
+      }
+
+      details.icard[open] > summary::after {
+        content: "▲";
+      }
+
+      details.icard .body {
+        padding: 0 0 12px;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.78);
+      }
+
+      .seg-tabs {
+        margin-top: 10px;
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .seg {
+        flex: 0 0 auto;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.65);
+        font-size: 11px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.55);
+      }
+
+      .seg.on {
+        border-color: rgba(91, 103, 255, 0.35);
+        background: rgba(91, 103, 255, 0.12);
+        color: #2f3bff;
+      }
+
+      .meters {
+        margin-top: 12px;
+        display: grid;
+        gap: 10px;
+      }
+
+      .meter {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .meter label {
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.78);
+        font-weight: 600;
+      }
+
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(18, 19, 26, 0.05);
+        overflow: hidden;
+      }
+
+      .fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+
+      .fill.good {
+        background: linear-gradient(135deg, var(--good), #59d98f);
+      }
+
+      .fill.warn {
+        background: linear-gradient(135deg, var(--warn), #ffcf6a);
+      }
+
+      .assess-row {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .assess-row p {
+        margin: 0;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.78);
+        line-height: 1.45;
+      }
+
+      .chev {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 10px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        display: grid;
+        place-items: center;
+      }
+
+      .fab {
+        position: absolute;
+        right: 16px;
+        bottom: 96px;
+        z-index: 4;
+        max-width: 168px;
+        padding: 12px 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(91, 103, 255, 0.35);
+        background: linear-gradient(135deg, rgba(91, 103, 255, 0.95), rgba(53, 182, 255, 0.92));
+        color: #fff;
+        font-size: 11px;
+        font-weight: 800;
+        line-height: 1.35;
+        text-align: left;
+        box-shadow: 0 14px 36px rgba(91, 103, 255, 0.35);
+        cursor: pointer;
+        animation: pulse 2.8s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 14px 36px rgba(91, 103, 255, 0.35);
+        }
+        50% {
+          transform: scale(1.02);
+          box-shadow: 0 18px 44px rgba(91, 103, 255, 0.45);
+        }
+      }
+
+      .sheet-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 8;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.22s ease;
+      }
+
+      .phone.ai-open .sheet-layer {
+        pointer-events: auto;
+        opacity: 1;
+      }
+
+      .sheet-dim {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 12, 20, 0.42);
+      }
+
+      .sheet {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 78%;
+        background: rgba(253, 253, 255, 0.98);
+        border-radius: 22px 22px 0 0;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        box-shadow: 0 -20px 50px rgba(18, 19, 26, 0.12);
+        transform: translateY(105%);
+        transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+        display: flex;
+        flex-direction: column;
+        padding-bottom: env(safe-area-inset-bottom, 0);
+      }
+
+      .phone.ai-open .sheet {
+        transform: translateY(0);
+      }
+
+      .sheet-head {
+        padding: 12px 14px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        border-bottom: 1px solid rgba(18, 19, 26, 0.06);
+      }
+
+      .sheet-head h3 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .sheet-close {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+      }
+
+      .chat {
+        flex: 1;
+        overflow-y: auto;
+        padding: 14px;
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+
+      .bubble {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        max-width: 92%;
+      }
+
+      .ai-av {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        flex-shrink: 0;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .bubble .text {
+        padding: 10px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.92);
+        font-size: 12px;
+        line-height: 1.5;
+        color: rgba(18, 19, 26, 0.85);
+      }
+
+      .typing {
+        display: inline-flex;
+        gap: 4px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .dot3 span {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--muted);
+        display: inline-block;
+        animation: b 1.1s infinite ease-in-out both;
+      }
+
+      .dot3 span:nth-child(2) {
+        animation-delay: 0.15s;
+      }
+
+      .dot3 span:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      @keyframes b {
+        0%,
+        80%,
+        100% {
+          opacity: 0.25;
+          transform: scale(0.85);
+        }
+        40% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .sheet-input {
+        padding: 10px 14px 16px;
+        border-top: 1px solid rgba(18, 19, 26, 0.06);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .sheet-input input {
+        flex: 1;
+        height: 40px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.12);
+        padding: 0 12px;
+        font-size: 13px;
+      }
+
+      .send {
+        height: 40px;
+        padding: 0 14px;
+        border-radius: 14px;
+        border: 0;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #fff;
+        font-weight: 800;
+        font-size: 12px;
+      }
+
+      .dialog-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 12;
+        background: rgba(10, 12, 20, 0.38);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+      }
+
+      .phone.dialog-open .dialog-layer {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .dialog {
+        width: 100%;
+        max-width: 300px;
+        background: #fff;
+        border-radius: 20px;
+        padding: 18px 16px 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        box-shadow: var(--shadow);
+      }
+
+      .dialog h4 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+
+      .dialog p {
+        margin: 0 0 16px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .dialog-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .dialog-actions button {
+        height: 42px;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+      }
+
+      .btn-ghost {
+        border: 1px solid rgba(18, 19, 26, 0.14);
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      .btn-danger {
+        border: 0;
+        background: rgba(230, 90, 90, 0.12);
+        color: #c03535;
+      }
+
+      .nav {
+        flex-shrink: 0;
+        height: 84px;
+        padding: 10px 14px 22px;
+        background: linear-gradient(
+          180deg,
+          rgba(247, 247, 255, 0.1),
+          rgba(247, 247, 255, 0.78) 22%,
+          rgba(247, 247, 255, 0.92)
+        );
+        border-top: 1px solid rgba(18, 19, 26, 0.08);
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
+        align-items: end;
+      }
+
+      .tab {
+        display: grid;
+        place-items: center;
+        gap: 6px;
+        font-size: 10px;
+        color: rgba(18, 19, 26, 0.55);
+        font-weight: 700;
+      }
+
+      .tab .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: transparent;
+      }
+
+      .tab.active {
+        color: rgba(18, 19, 26, 0.9);
+      }
+
+      .tab.active .dot {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+
+      .proto-note {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 12px;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.45);
+        max-width: 420px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone" id="phone" aria-label="InsightSelf 主页原型（含 AI 底部弹层交互演示）">
+      <div class="safe">
+        <div class="status">
+          <div>9:41</div>
+          <div>5G · 100%</div>
+        </div>
+
+        <div class="feed">
+          <div class="top">
+            <div class="hello">
+              <strong>小彤，上午好</strong>
+              <span>5月5日周二 · 综合洞察已聚合八字 / 星座 / 测评</span>
+              <div class="pull-hint">交互：下拉刷新可同步万年历当日运势 · PRD § 主页</div>
+            </div>
+            <div class="avatar" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M20 21a8 8 0 0 0-16 0"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="cardhead">
+                <strong>今日运势 · 万年历聚合</strong>
+                <div class="badge">Dashboard</div>
+              </div>
+              <div class="score-row">
+                <div class="score-ring" aria-hidden="true">78</div>
+                <div class="luck-grid">
+                  <div class="luck">
+                    <b>幸运色</b>
+                    <span class="swatch"><span class="sw" style="background:#6c7cff"></span>雾蓝</span>
+                  </div>
+                  <div class="luck">
+                    <b>幸运方位</b>
+                   东南
+                  </div>
+                  <div class="luck">
+                    <b>幸运数字</b>
+                    3 · 8
+                  </div>
+                  <div class="luck">
+                    <b>综合解读</b>
+                    宜静心梳理
+                  </div>
+                </div>
+              </div>
+              <div class="list-dos">
+                <div><span class="ok">宜 ·</span> 与朋友做一次深度对话、整理桌面与日程</div>
+                <div><span class="no">忌 ·</span> 冲动签约、熬夜赶工</div>
+              </div>
+              <details class="icard">
+                <summary>展开 · 查看当日细则与节气备注</summary>
+                <div class="body">
+                  今日水木相生，利于学习与沟通；金星相位平缓，避免把细节苛求加到亲密关系上。
+                  卡片默认可摘要展示，全文置于折叠区内（PRD：可折叠摘要 + 展开全文）。
+                </div>
+              </details>
+            </div>
+
+            <div class="card">
+              <div class="cardhead">
+                <strong>星象解读</strong>
+                <div class="badge">日 · 月 · 升</div>
+              </div>
+              <div class="seg-tabs" aria-hidden="true">
+                <div class="seg on">太阳双子</div>
+                <div class="seg">月亮天蝎</div>
+                <div class="seg">上升处女</div>
+              </div>
+              <div class="meters">
+                <div class="meter">
+                  <label>情绪</label>
+                  <div class="bar"><div class="fill good" style="width: 74%"></div></div>
+                </div>
+                <div class="meter">
+                  <label>交流</label>
+                  <div class="bar"><div class="fill" style="width: 63%"></div></div>
+                </div>
+                <div class="meter">
+                  <label>行动力</label>
+                  <div class="bar"><div class="fill warn" style="width: 48%"></div></div>
+                </div>
+              </div>
+              <details class="icard">
+                <summary>展开 · 本命分层解读摘要</summary>
+                <div class="body">
+                  太阳双子带来敏捷表达与好奇心；月亮天蝎需要真实的情绪联结；上升处女偏好结构化推进。
+                  可横向滑动切换三段解读以减少纵向滚动（此处用 Chip 示意）。
+                </div>
+              </details>
+            </div>
+
+            <div class="card">
+              <div class="cardhead">
+                <strong>最新心理测评</strong>
+                <div class="badge">BFI-10</div>
+              </div>
+              <div class="assess-row">
+                <p>
+                  开放性偏高、尽责性稳健：适合你「先小规模试错再扩散」的职业探索路径。<br />
+                  右侧入口跳转测评 Tab（PRD：箭头进入报告详情）。
+                </p>
+                <div class="chev" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <details class="icard">
+                <summary>若无测评记录 · 空状态（示意）</summary>
+                <div class="body">
+                  展示插画 +「去测评」按钮跳转 Tab④；此处为有数据时的摘要样式。
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="fab" id="fab">
+        点我试试<br />AI 综合解读
+      </button>
+
+      <div class="sheet-layer" id="sheetLayer" aria-hidden="true">
+        <div class="sheet-dim" id="sheetDim"></div>
+        <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+          <div class="sheet-head">
+            <h3 id="sheetTitle">AI 综合解读</h3>
+            <button type="button" class="sheet-close" id="sheetClose" aria-label="关闭">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div class="chat">
+            <div class="bubble">
+              <div class="ai-av">AI</div>
+              <div class="text">
+                <span class="typing">正在解析中</span>
+                <span class="dot3" aria-hidden="true"><span></span><span></span><span></span></span>
+              </div>
+            </div>
+            <div class="bubble">
+              <div class="ai-av">AI</div>
+              <div class="text">
+                我已读取你的八字木旺、双子太阳与最近一次 BFI 结果：今日优先「一对一澄清」而非群发协作；傍晚留出 15
+                分钟复盘即可，无需新开长线任务。
+              </div>
+            </div>
+          </div>
+          <div class="sheet-input">
+            <input type="text" placeholder="输入追问…（原型占位）" readonly />
+            <button type="button" class="send">发送</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dialog-layer" id="dialogLayer" aria-hidden="true">
+        <div class="dialog" role="alertdialog" aria-labelledby="dlgTitle">
+          <h4 id="dlgTitle">是否退出当前对话？</h4>
+          <p>关闭后将清空本轮会话界面；再次点击侧边助手可重新开始。</p>
+          <div class="dialog-actions">
+            <button type="button" class="btn-ghost" id="dlgStay">继续对话</button>
+            <button type="button" class="btn-danger" id="dlgLeave">退出</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav" aria-hidden="true">
+        <div class="tab active">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M3 10.5 12 3l9 7.5V21a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 21V10.5Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+            <path d="M9 22v-7a3 3 0 0 1 6 0v7" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          主页
+          <div class="dot"></div>
+        </div>
+        <div class="tab">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+          </svg>
+          八字
+          <div class="dot"></div>
+        </div>
+        <div class="tab">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke="currentColor" stroke-width="2" />
+            <path d="M12 3a7 7 0 0 0 0 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+          星座
+          <div class="dot"></div>
+        </div>
+        <div class="tab">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M7 4h10a2 2 0 0 1 2 2v14l-7-3-7 3V6a2 2 0 0 1 2-2Z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+          </svg>
+          测评
+          <div class="dot"></div>
+        </div>
+        <div class="tab">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path d="M20 21a8 8 0 0 0-16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path d="M12 13a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2" />
+          </svg>
+          我的
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="proto-note">原型说明：点击紫色悬浮按钮打开 AI 底部弹层；点遮罩或 ✕ 出现二次确认对话框。</p>
+
+    <script>
+      (function () {
+        var phone = document.getElementById("phone");
+        var fab = document.getElementById("fab");
+        var sheetClose = document.getElementById("sheetClose");
+        var sheetDim = document.getElementById("sheetDim");
+        var dlgStay = document.getElementById("dlgStay");
+        var dlgLeave = document.getElementById("dlgLeave");
+
+        function openSheet() {
+          phone.classList.add("ai-open");
+        }
+
+        function requestClose() {
+          phone.classList.add("dialog-open");
+        }
+
+        function dismissDialog() {
+          phone.classList.remove("dialog-open");
+        }
+
+        function closeAll() {
+          phone.classList.remove("dialog-open", "ai-open");
+        }
+
+        fab.addEventListener("click", openSheet);
+        sheetClose.addEventListener("click", requestClose);
+        sheetDim.addEventListener("click", requestClose);
+        dlgStay.addEventListener("click", dismissDialog);
+        dlgLeave.addEventListener("click", closeAll);
+      })();
+    </script>
+  </body>
+</html>

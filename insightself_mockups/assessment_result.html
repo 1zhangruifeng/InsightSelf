@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InsightSelf — 测评结果解读</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg0: #f7f7ff;
+        --bg1: #f3fbff;
+        --text: #12131a;
+        --muted: #5b5f6c;
+        --stroke: rgba(20, 22, 33, 0.08);
+        --primary: #5b67ff;
+        --primary-2: #35b6ff;
+        --good: #1fbf73;
+        --warn: #ffb020;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, "PingFang SC", sans-serif;
+        background: linear-gradient(160deg, var(--bg0), var(--bg1));
+        color: var(--text);
+      }
+      .phone {
+        width: 390px;
+        height: 844px;
+        margin: 24px auto;
+        border-radius: 42px;
+        border: 1px solid rgba(20, 22, 33, 0.08);
+        box-shadow: 0 24px 60px rgba(18, 19, 26, 0.18);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .safe {
+        flex: 1;
+        min-height: 0;
+        padding: 18px 18px 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .feed {
+        flex: 1;
+        overflow-y: auto;
+        padding-bottom: 14px;
+      }
+      .status {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: rgba(18, 19, 26, 0.55);
+        padding: 6px 6px 0;
+      }
+      .appbar {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 8px 6px;
+      }
+      .back {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.75);
+        display: grid;
+        place-items: center;
+      }
+      .icon {
+        width: 18px;
+        height: 18px;
+        opacity: 0.75;
+      }
+      .titlewrap {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+        min-width: 0;
+      }
+      .title {
+        font-weight: 800;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .sub {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .hero {
+        margin-top: 10px;
+        padding: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(91, 103, 255, 0.22);
+        background: linear-gradient(135deg, rgba(91, 103, 255, 0.12), rgba(53, 182, 255, 0.08));
+      }
+      .hero h1 {
+        margin: 0 0 6px;
+        font-size: 18px;
+        letter-spacing: -0.02em;
+      }
+      .hero p {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.78);
+      }
+      .card {
+        margin-top: 12px;
+        padding: 14px;
+        border-radius: 20px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(12px);
+      }
+      .card h2 {
+        margin: 0 0 10px;
+        font-size: 13px;
+      }
+      .trait {
+        display: grid;
+        grid-template-columns: 110px 1fr 34px;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .trait:last-child {
+        margin-bottom: 0;
+      }
+      .trait label {
+        font-size: 11px;
+        font-weight: 800;
+        color: rgba(18, 19, 26, 0.72);
+      }
+      .bar {
+        height: 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(18, 19, 26, 0.1);
+        background: rgba(18, 19, 26, 0.05);
+        overflow: hidden;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      }
+      .pct {
+        text-align: right;
+        font-size: 11px;
+        font-weight: 900;
+        color: rgba(18, 19, 26, 0.55);
+      }
+      details {
+        margin-top: 10px;
+        border-radius: 14px;
+        border: 1px solid rgba(18, 19, 26, 0.08);
+        background: rgba(255, 255, 255, 0.6);
+        padding: 0 12px;
+      }
+      details > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 10px 0;
+        font-size: 12px;
+        font-weight: 800;
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      details > summary::-webkit-details-marker {
+        display: none;
+      }
+      details > summary::after {
+        content: "▼";
+        font-size: 9px;
+        opacity: 0.45;
+      }
+      details[open] > summary::after {
+        content: "▲";
+      }
+      details .body {
+        padding: 0 0 12px;
+        font-size: 12px;
+        line-height: 1.55;
+        color: rgba(18, 19, 26, 0.76);
+      }
+      .share {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .btn {
+        height: 46px;
+        border-radius: 16px;
+        font-weight: 800;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      .btn-ghost {
+        border: 1px solid rgba(18, 19, 26, 0.14);
+        background: rgba(255, 255, 255, 0.85);
+        color: rgba(18, 19, 26, 0.78);
+      }
+      .btn-primary {
+        border: 0;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #fff;
+        box-shadow: 0 14px 34px rgba(91, 103, 255, 0.22);
+      }
+      .hint {
+        margin-top: 10px;
+        font-size: 11px;
+        color: rgba(18, 19, 26, 0.45);
+        text-align: center;
+        line-height: 1.45;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone" aria-label="测评结果解读页原型（单屏示意：结果条 + 折叠解释 + 分享/返回）">
+      <div class="safe">
+        <div class="status"><span>9:41</span><span>5G · 100%</span></div>
+
+        <div class="feed">
+          <div class="appbar">
+            <div class="back" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="titlewrap">
+              <div class="title">BFI-10 · 结果解读</div>
+              <div class="sub">已完成 · 2026-05-05</div>
+            </div>
+            <div class="back" aria-hidden="true" title="更多">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+                <path d="M12 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+                <path d="M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" fill="currentColor" />
+              </svg>
+            </div>
+          </div>
+
+          <div class="hero">
+            <h1>你的主线：稳定执行 + 适度好奇</h1>
+            <p>
+              这份简版结果用于自我理解与行动建议，不用于临床诊断。主页「最新测评结论」将引用这里的摘要。
+            </p>
+          </div>
+
+          <div class="card">
+            <h2>维度概览（示意）</h2>
+            <div class="trait">
+              <label>开放性</label>
+              <div class="bar"><i style="width: 68%"></i></div>
+              <div class="pct">68</div>
+            </div>
+            <div class="trait">
+              <label>尽责性</label>
+              <div class="bar"><i style="width: 74%; background: linear-gradient(135deg, var(--good), #59d98f)"></i></div>
+              <div class="pct">74</div>
+            </div>
+            <div class="trait">
+              <label>外向性</label>
+              <div class="bar"><i style="width: 42%; background: linear-gradient(135deg, var(--warn), #ffcf6a)"></i></div>
+              <div class="pct">42</div>
+            </div>
+            <div class="trait">
+              <label>宜人性</label>
+              <div class="bar"><i style="width: 61%"></i></div>
+              <div class="pct">61</div>
+            </div>
+            <div class="trait">
+              <label>神经质</label>
+              <div class="bar"><i style="width: 53%; background: linear-gradient(135deg, var(--warn), #ffcf6a)"></i></div>
+              <div class="pct">53</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h2>分层解读（折叠）</h2>
+            <details open>
+              <summary>你会如何做决策</summary>
+              <div class="body">
+                尽责性偏高意味着你更依赖计划与结构；开放性中高使你愿意试新方法。建议：先做 1 个小实验，再决定是否扩大投入。
+              </div>
+            </details>
+            <details>
+              <summary>压力状态下的信号</summary>
+              <div class="body">
+                神经质中等偏上时，容易对「未完成」敏感。建议：把目标拆成可勾选的最小步骤，并设置固定的收工时间。
+              </div>
+            </details>
+            <details>
+              <summary>三条可执行建议</summary>
+              <div class="body">
+                1) 每天只保留 1 个最重要任务；2) 用 25 分钟番茄钟启动；3) 晚上用 3 句话做复盘，避免反刍。
+              </div>
+            </details>
+          </div>
+
+          <div class="share" aria-hidden="true">
+            <button type="button" class="btn btn-ghost">复制摘要</button>
+            <button type="button" class="btn btn-primary">分享</button>
+          </div>
+
+          <p class="hint">提交成功进入本页；返回列表该项标记已完成并更新时间戳（PRD § 信息测评模块）。</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
